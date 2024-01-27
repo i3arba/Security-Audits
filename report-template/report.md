@@ -28,6 +28,8 @@ Description of the methodology used in the audit. Include details about static a
 
 - **Vulnerability 1**
   - **Description:**
+  - **Impact:**
+  - **Proof of Concept:**
   - **Recommendation:**
   - **Status:**
 
