@@ -31,7 +31,6 @@
   - [Issues found](#issues-found)
   - [Methodology](#methodology)
   - [Audit Findings](#audit-findings)
-    - [Critical Vulnerabilities](#critical-vulnerabilities)
     - [High Severity Vulnerabilities](#high-severity-vulnerabilities)
     - [Medium Severity Vulnerabilities](#medium-severity-vulnerabilities)
     - [Minor Observations](#minor-observations)
@@ -89,35 +88,41 @@ The strategy was to break protocol invariants using Stateless and Stateful testi
 
 ## Audit Findings
 
-### Critical Vulnerabilities
+### High Severity Vulnerabilities
 
 - **Vulnerability 1**
   - **Description:**
   - **Impact:**
   - **Proof of Concept:**
   - **Recommendation:**
-  - **Status:**
-
-### High Severity Vulnerabilities
-
-- **Vulnerability 2**
-  - **Description:**
-  - **Recommendation:**
-  - **Status:**
 
 ### Medium Severity Vulnerabilities
 
-- **Vulnerability 3**
+- **Vulnerability 1**
   - **Description:**
+  - **Impact:**
+  - **Proof of Concept:**
   - **Recommendation:**
-  - **Status:**
 
-### Minor Observations
+### Low Severity Vulnerabilities
+
+- **Vulnerability 1**
+  - **Description:**
+  - **Impact:**
+  - **Proof of Concept:**
+  - **Recommendation:**
+
+### Gas Observations
 
 - **Observation 1**
   - **Description:**
   - **Recommendation:**
-  - **Status:**
+
+### Informational Observations
+
+- **Observation 1**
+  - **Description:**
+  - **Recommendation:**
 
 ## Conclusion
 
@@ -126,5 +131,3 @@ A general summary of the findings and an overall assessment of the smart contrac
 ## Appendices
 
 Any code, images, or other attachments that are relevant to the report.
-
----
