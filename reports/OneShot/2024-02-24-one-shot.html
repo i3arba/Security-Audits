@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2024-02-24-one-shot.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<div align="center">
+<p><img src="./logo.png" alt="Bellum Galaxy"></p>
+</div>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<h1 id="table-of-contents">Table of Contents</h1>
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#protocol-summary">Protocol Summary</a></li>
+<li><a href="#disclaimer">Disclaimer</a></li>
+<li><a href="#risk-classification">Risk Classification</a></li>
+<li><a href="#audit-details">Audit Details</a>
+<ul>
+<li><a href="#scope">Scope</a></li>
+<li><a href="#roles">Roles</a></li>
+<li><a href="#issues-found">Issues found</a></li>
+<li><a href="#methodology">Methodology</a></li>
+<li><a href="#audit-findings">Audit Findings</a>
+<ul>
+<li><a href="#high-severity-vulnerabilities">High Severity Vulnerabilities</a></li>
+<li><a href="#medium-severity-vulnerabilities">Medium Severity Vulnerabilities</a></li>
+<li><a href="#minor-observations">Minor Observations</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#appendices">Appendices</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="protocol-summary">Protocol Summary</h1>
+<h1 id="disclaimer">Disclaimer</h1>
+<p>The Bellum Galaxy team makes all effort to find as many vulnerabilities in the code in the given time period, but holds no responsibilities for the findings provided in this document. A security audit by the team is not an endorsement of the underlying business or product. The audit was time-boxed and the review of the code was solely on the security aspects of the Solidity implementation of the contracts.</p>
+<h1 id="risk-classification">Risk Classification</h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>Impact</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td>High</td>
+<td>Medium</td>
+<td>Low</td>
+</tr>
+<tr>
+<td></td>
+<td>High</td>
+<td>H</td>
+<td>H/M</td>
+<td>M</td>
+</tr>
+<tr>
+<td>Likelihood</td>
+<td>Medium</td>
+<td>H/M</td>
+<td>M</td>
+<td>M/L</td>
+</tr>
+<tr>
+<td></td>
+<td>Low</td>
+<td>M</td>
+<td>M/L</td>
+<td>L</td>
+</tr>
+</tbody>
+</table>
+<p>We use the <a href="https://docs.codehawks.com/hawks-auditors/how-to-evaluate-a-finding-severity">CodeHawks</a> severity matrix to determine severity. See the documentation for more details.</p>
+<h1 id="audit-details">Audit Details</h1>
+<ul>
+<li>
+<p><strong>Project Name:</strong></p>
+<ul>
+<li>OneShot</li>
+</ul>
+</li>
+<li>
+<p><strong>Smart Contract Address:</strong></p>
+<ul>
+<li>Not deployed.</li>
+</ul>
+</li>
+<li>
+<p><strong>Audit Date:</strong></p>
+<ul>
+<li>24/02/2024</li>
+</ul>
+</li>
+<li>
+<p><strong>Audit Tools Used:</strong></p>
+<ul>
+<li>Code Review</li>
+<li>Solidity Code Metrics</li>
+<li>Slither</li>
+<li>Aderyn</li>
+</ul>
+</li>
+<li>
+<p><strong>Auditors:</strong></p>
+<ul>
+<li>Barba</li>
+</ul>
+</li>
+</ul>
+<h2 id="scope">Scope</h2>
+<pre class="hljs"><code><div>├── src
+│   ├── CredToken.sol
+│   ├── OneShot.sol
+│   ├── RapBattle.sol
+│   ├── Streets.sol
+</div></code></pre>
+<h2 id="roles">Roles</h2>
+<ul>
+<li><strong>User</strong>
+<ul>
+<li>Should be able to mint a rapper, stake and unstake their rapper and go on stage/battle</li>
+</ul>
+</li>
+</ul>
+<h2 id="issues-found">Issues found</h2>
+<table>
+<thead>
+<tr>
+<th>Severtity</th>
+<th>Number of issues found</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>High</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Low</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Gas</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Info</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Total</td>
+<td>16</td>
+</tr>
+</tbody>
+</table>
+<h2 id="audit-findings">Audit Findings</h2>
+<h3 id="high-severity-vulnerabilities">High Severity Vulnerabilities</h3>
+<ul>
+<li>
+<p><strong>DoS - A malicious user can call <code>RapBattle.sol::goOnStageOrBattle</code> and lock other users out of the Stage</strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>The protocol design allows only one battle at a time. So, a user can battle himself by calling multiple times the <code>RapBattle::goOnStageOrBattle</code> function leading to a pump in his skills and locking the other users out. Because there isn't a penalty to the loser, besides the bet value.</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>Break the Battle funcionality.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+  <details>
+  <summary>Add the following code to `OneShotTest.t.sol`</summary>
+<pre class="hljs"><code><div>  function testPoCGoOnStage() public mintRapper {
+      vm.startPrank(user);
+      oneShot.approve(address(rapBattle), 0);
+      rapBattle.goOnStageOrBattle(0, 0);
+      address defender = rapBattle.defender();
+      assert(defender == address(user));
+
+      rapBattle.goOnStageOrBattle(0, 1);
+  }
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+  <details>
+  <summary>See the code recommendation below</summary>
+<pre class="hljs"><code><div>  function goOnStageOrBattle(uint256 _tokenId, uint256 _credBet) external {
+      if (defender == address(0)) {
+          defender = msg.sender;
+          defenderBet = _credBet;
+          defenderTokenId = _tokenId;
+
+          emit OnStage(msg.sender, _tokenId, _credBet);
+
+          oneShotNft.transferFrom(msg.sender, address(this), _tokenId);
+          credToken.transferFrom(msg.sender, address(this), _credBet);
+      } else {
+<span class="hljs-addition">+         if(msg.sender == defender){</span>
+<span class="hljs-addition">+           revert RapBattle__YouCantBattleYourself();</span>
+<span class="hljs-addition">+         }</span>
+          //!!! access control - Lack of tokenId validation. Anyone can call using other people tokenId.
+          // credToken.transferFrom(msg.sender, address(this), _credBet);
+          _battle(_tokenId, _credBet);
+      }
+  }
+</div></code></pre>
+  </details>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>No bet value check on <code>RapBattle::goOnStageOrBattle</code>, leading to bets with a value of 0.</strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>The protocol design allows only one battle at a time. So, a user can call <code>RapBattle::goOnStageOrBattle</code> constantly betting 0 Cred and blocking other users to battle</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>Break the Rap Battle funcionality in the <code>RapBattle::goOnStageOrBattle</code> function.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+  <details>
+  <summary>Add the following code to `OneShotTest.t.sol`</summary>
+<pre class="hljs"><code><div>  function testPoCGoOnStage() public mintRapper {
+      vm.startPrank(user);
+      oneShot.approve(address(rapBattle), 0);
+      rapBattle.goOnStageOrBattle(0, 0);
+      address defender = rapBattle.defender();
+      assert(defender == address(user));
+  }
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+  <details>
+  <summary>See the code recommendation below</summary>
+<pre class="hljs"><code><div>  function goOnStageOrBattle(uint256 _tokenId, uint256 _credBet) external {
+<span class="hljs-addition">+     if(_credBet &lt; 1){</span>
+<span class="hljs-addition">+       revert RapBattle__YouMustPutYourCredInTheLine();</span>
+<span class="hljs-addition">+     }</span>
+      if (defender == address(0)) {
+          defender = msg.sender;
+          defenderBet = _credBet;
+          defenderTokenId = _tokenId;
+
+          emit OnStage(msg.sender, _tokenId, _credBet);
+
+          oneShotNft.transferFrom(msg.sender, address(this), _tokenId);
+          credToken.transferFrom(msg.sender, address(this), _credBet);
+      } else {
+          //!!! access control - Lack of tokenId validation. Anyone can call using other people tokenId.
+          // credToken.transferFrom(msg.sender, address(this), _credBet);
+          _battle(_tokenId, _credBet);
+      }
+  }
+</div></code></pre>
+  </details>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>User can call <code>RapBattle::goOnStageOrBattle</code> with other people NFT or Non existent NFT, breaking the protocol design</strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>A user can call <code>RapBattle::goOnStageOrBattle</code> as a challenger passing a non-existent NFT ID or using other people's NFT ID to battle.</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>The user will be able to collect Cred from the battle without having a Rapper NFT.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+<ul>
+<li>
+<p>Add the code below to <code>OneShotTest.t.sol</code></p>
+</li>
+<li>
+<p>Call the test by using <code>forge test --mt testPoCGoOnStage -vvvvv</code></p>
+</li>
+<li>
+<p>The function will fo through, however you will receive the error <code>FAIL. Reason: ERC721NonexistentToken(10)</code> from the <code>ownerOf</code> function after the execution.</p>
+<details>
+<summary>Add the code below to `OneShotTest.t.sol`</summary>
+<pre class="hljs"><code><div>    function testIfCanCallWithNonExistantNFTID() public twoSkilledRappers {
+        vm.startPrank(user);
+        oneShot.approve(address(rapBattle), 0);
+        cred.approve(address(rapBattle), 10);
+        rapBattle.goOnStageOrBattle(0, 3);
+        vm.stopPrank();
+
+        vm.startPrank(challenger);
+        cred.approve(address(rapBattle), 10);
+
+        rapBattle.goOnStageOrBattle(100, 3);
+        vm.stopPrank();
+
+        assert(oneShot.ownerOf(0) == address(user));
+  @&gt;    address nftOwner = oneShot.ownerOf(100);
+    }
+</div></code></pre>
+</details>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+  <details>
+  <summary>See the code recommendation below</summary>
+<pre class="hljs"><code><div>  function goOnStageOrBattle(uint256 _tokenId, uint256 _credBet) external {
+<span class="hljs-addition">+     if(oneShotNft.ownerOf(_tokenId) != msg.sender){</span>
+<span class="hljs-addition">+         revert RapBattle__YouMustBeTheNFTOwner();</span>
+<span class="hljs-addition">+     }</span>
+      if (defender == address(0)) {
+          defender = msg.sender;
+          defenderBet = _credBet;
+          defenderTokenId = _tokenId;
+
+          emit OnStage(msg.sender, _tokenId, _credBet);
+
+          oneShotNft.transferFrom(msg.sender, address(this), _tokenId);
+          credToken.transferFrom(msg.sender, address(this), _credBet);
+      } else {
+          // credToken.transferFrom(msg.sender, address(this), _credBet);
+          _battle(_tokenId, _credBet);
+      }
+  }
+</div></code></pre>
+  </details>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>The Challenger user can challenge the Defender without having the Cred balance, leading to risk zero and no reward to the Defender if he won.</strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li><code>RapBattle::goOnStageOrBattle</code> has no balance verification. In this scenario, the challenger doesn't need to have <code>CredToken</code> to call the function.</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>The defender will not receive rewards if he wins the battle. If the challenger wins, the defender still loses cred.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+  <details>
+  <summary>Add the code below to `OneShotTest.t.sol`</summary>
+<pre class="hljs"><code><div>    function testPoCGoOnStage() public mintRapper {
+        vm.startPrank(address(streets));
+        cred.mint(user, 10);
+        vm.stopPrank();
+
+        vm.startPrank(user);
+        oneShot.approve(address(rapBattle), 0);
+        cred.approve(address(rapBattle), 10);
+        rapBattle.goOnStageOrBattle(0, 10);
+        address defender = rapBattle.defender();
+        vm.stopPrank();
+        assert(defender == address(user));
+        uint256 slimBalance = cred.balanceOf(challenger);
+        vm.startPrank(challenger);
+        console.log(slimBalance);
+        rapBattle.goOnStageOrBattle(0, 10);
+    }
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+  <details>
+  <summary>See the recommendation code below</summary>
+<pre class="hljs"><code><div>  function goOnStageOrBattle(uint256 _tokenId, uint256 _credBet) external {
+      if (defender == address(0)) {
+          defender = msg.sender;
+          defenderBet = _credBet;
+          defenderTokenId = _tokenId;
+
+          emit OnStage(msg.sender, _tokenId, _credBet);
+
+          oneShotNft.transferFrom(msg.sender, address(this), _tokenId);
+          credToken.transferFrom(msg.sender, address(this), _credBet);
+      } else {
+<span class="hljs-addition">+          if(credToken.balanceOf(msg.sender) &lt; defenderBet){</span>
+<span class="hljs-addition">+              revert RapBattle__YouDontHaveEnoughFunds();</span>
+<span class="hljs-addition">+          }</span>
+          // credToken.transferFrom(msg.sender, address(this), _credBet);
+          _battle(_tokenId, _credBet);
+      }
+  }
+</div></code></pre>
+  </details>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>RapBattle.sol::_battle</code> has a weak PRNG, leading to a challenger manipulation of the battle results</strong></p>
+<ul>
+<li><strong>Description:</strong>
+<ul>
+<li>Weak PRNG due to a modulo on block.timestamp, now or blockhash. These can be influenced by miners to some extent so they should be avoided.</li>
+</ul>
+</li>
+<li><strong>Impact:</strong>
+<ul>
+<li>A challenger can manipulate the battle result to won the bet.</li>
+</ul>
+</li>
+<li><strong>Proof of Concept:</strong>
+<ul>
+<li>Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#weak-PRNG</li>
+</ul>
+</li>
+<li><strong>Recommendation:</strong>
+<ul>
+<li>Do not use block.timestamp, now or blockhash as a source of randomness</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>RapBattle.sol::_battle</code> uses dangerous equality. If the bet is too high and the opponent is too strong, nobody will challenge causing unintended lock to protocol.</strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li><code>RapBattle.sol::_battle</code> requires that both bets must have the same value. The protocol design allows one battle at a time, so if the defender is too skilled and bets too much Cred, nobody will accept the challenge.</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>Protocol will locked because the function will be blocked with a giant bet.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+<ul>
+<li>
+<p>After a big bet</p>
+</li>
+<li>
+<p>If a user doesn't match the bet, the protocol will be blocked until someone matches</p>
+<details>
+<summary>Add the code below to `OneShotTest.t.sol`</summary>
+<pre class="hljs"><code><div>    function testGoOnBlocked() public mintRapper {
+        vm.startPrank(address(streets));
+        cred.mint(user, 100);
+        vm.stopPrank();
+
+        vm.warp(51684120);
+        vm.startPrank(user);
+        oneShot.approve(address(rapBattle), 0);
+        cred.approve(address(rapBattle), 100);
+        rapBattle.goOnStageOrBattle(0, 100);
+        address defender = rapBattle.defender();
+        vm.stopPrank();
+        
+        vm.startPrank(challenger);
+        rapBattle.goOnStageOrBattle(1, 0);
+    }
+</div></code></pre>
+</details>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+<ul>
+<li>
+<p>Create a counter to control the battles</p>
+</li>
+<li>
+<p>Create a struct to control the line-up</p>
+</li>
+<li>
+<p>Create a mapping to keep track of battles</p>
+</li>
+<li>
+<p>Redesign the <code>RapBattle::goOnStageOrBattle</code> function into a <code>RapBattle::credDefender</code> &amp; <code>RapBattle::credChallenger</code> functions</p>
+<details>
+<summary>Create the variables in `RapBattle.sol` as follows</summary>
+<pre class="hljs"><code><div><span class="hljs-addition">+    struct Lineup {</span>
+<span class="hljs-addition">+        address defender;</span>
+<span class="hljs-addition">+        address challenger;</span>
+<span class="hljs-addition">+        uint256 defenderNFTId;</span>
+<span class="hljs-addition">+        uint256 bet;</span>
+<span class="hljs-addition">+    }</span>
+<span class="hljs-addition">+    uint256 battleCounter = 1;</span>
+<span class="hljs-addition">+    mapping(uint256 battleCounter =&gt; Lineup) private stageLimits;</span>
+<span class="hljs-addition">+    error RapBattle__NotEnoughCred();</span>
+</div></code></pre>
+</details>
+<details>
+<summary>Convert the `RapBattle.sol::goOnStageOrBattle` into `RapBattle.sol::credDefender` and `RapBattle.sol::credChallenger` as follows</summary>
+<pre class="hljs"><code><div><span class="hljs-deletion">- function goOnStageOrBattle(uint256 _tokenId, uint256 _credBet) external {</span>
+<span class="hljs-deletion">-    if (defender == address(0)) {</span>
+<span class="hljs-deletion">-       defender = msg.sender;</span>
+<span class="hljs-deletion">-       defenderBet = _credBet;</span>
+<span class="hljs-deletion">-       defenderTokenId = _tokenId;</span>
+<span class="hljs-deletion">-</span>
+<span class="hljs-deletion">-       emit OnStage(msg.sender, _tokenId, _credBet);</span>
+<span class="hljs-deletion">-</span>
+<span class="hljs-deletion">-       oneShotNft.transferFrom(msg.sender, address(this), _tokenId);</span>
+<span class="hljs-deletion">-       credToken.transferFrom(msg.sender, address(this), _credBet);</span>
+<span class="hljs-deletion">-   } else {</span>
+<span class="hljs-deletion">-       // credToken.transferFrom(msg.sender, address(this), _credBet);</span>
+<span class="hljs-deletion">-       _battle(_tokenId, _credBet);</span>
+<span class="hljs-deletion">-   }</span>
+<span class="hljs-deletion">-}</span>
+
+
+<span class="hljs-addition">+ function credDefender(uint256 _tokenId, uint256 _credBet) external {</span>
+<span class="hljs-addition">+       if (credToken.balanceOf(msg.sender) &lt; _credBet){</span>
+<span class="hljs-addition">+               revert RapBattle__NotEnoughCred();</span>
+<span class="hljs-addition">+       }</span>
+<span class="hljs-addition">+       stageLimits[battleCounter] = Lineup ({</span>
+<span class="hljs-addition">+           defender: msg.sender,</span>
+<span class="hljs-addition">+           challenger: address(0),</span>
+<span class="hljs-addition">+           defenderNFTId: _tokenId,</span>
+<span class="hljs-addition">+           bet: _credBet</span>
+<span class="hljs-addition">+       });</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+       emit OnStage(msg.sender, _tokenId, _credBet);</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+       battleCounter++;</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+       oneShotNft.transferFrom(msg.sender, address(this), _tokenId);</span>
+<span class="hljs-addition">+       credToken.transferFrom(msg.sender, address(this), _credBet);</span>
+<span class="hljs-addition">+   }</span>
+
+
+
+<span class="hljs-addition">+ function credChallenger(uint256 _stageId, uint256 _tokenId) external {</span>
+<span class="hljs-addition">+       if(credToken.balanceOf(msg.sender) &lt; stageLimits[_stageId].bet || oneShotNft.ownerOf(_tokenId) != msg.sender){</span>
+<span class="hljs-addition">+           revert RapBattle__NotEnoughCredOrItsNotTheNFTOwner();</span>
+<span class="hljs-addition">+       }</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+       stageLimits[_stageId].challenger = msg.sender;</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+       // credToken.transferFrom(msg.sender, address(this), _credBet);</span>
+<span class="hljs-addition">+       _battle(_stageId, _tokenId);</span>
+<span class="hljs-addition">+   }</span>
+
+</div></code></pre>
+</details>
+<details>
+<summary>Adjust the `RapBattle.sol::_battle` as follow </summary>
+<pre class="hljs"><code><div>
+<span class="hljs-addition">+ function _battle(uint256 _stageId, uint256 _tokenId) internal {</span>
+<span class="hljs-deletion">-       address _defender = defender;</span>
+<span class="hljs-deletion">-       require(defenderBet == _credBet, "RapBattle: Bet amounts do not match");</span>
+<span class="hljs-deletion">-       uint256 defenderRapperSkill = getRapperSkill(defenderTokenId);</span>
+<span class="hljs-addition">+       uint256 defenderRapperSkill = getRapperSkill(stageLimits[_stageId].defenderNFTId);</span>
+<span class="hljs-addition">+       uint256 challengerRapperSkill = getRapperSkill(_tokenId);</span>
+<span class="hljs-addition">+       uint256 totalBattleSkill = defenderRapperSkill + challengerRapperSkill;</span>
+<span class="hljs-deletion">-       uint256 totalPrize = defenderBet + _credBet;</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+       //Must adjust this too.</span>
+        uint256 random =
+            uint256(keccak256(abi.encodePacked(block.timestamp, block.prevrandao, msg.sender))) % totalBattleSkill;
+
+<span class="hljs-deletion">-       defender = address(0);</span>
+
+<span class="hljs-addition">+       emit Battle(msg.sender, _tokenId, random &lt;= defenderRapperSkill ? stageLimits[_stageId].defender : msg.sender);</span>
+<span class="hljs-deletion">-       emit Battle(msg.sender, _tokenId, random &lt; defenderRapperSkill ? _defender : msg.sender);</span>
+
+        if (random &lt;= defenderRapperSkill) {
+<span class="hljs-deletion">-            credToken.transfer(_defender, defenderBet);</span>
+<span class="hljs-addition">+            credToken.transfer(stageLimits[_stageId].defender, stageLimits[_stageId].bet);</span>
+<span class="hljs-deletion">-            credToken.transferFrom(msg.sender, _defender, _credBet);</span>
+<span class="hljs-addition">+            credToken.transferFrom(msg.sender, stageLimits[_stageId].defender, stageLimits[_stageId].bet);</span>
+        } else {
+<span class="hljs-deletion">-            credToken.transfer(msg.sender, _credBet);</span>
+<span class="hljs-addition">+            credToken.transfer(msg.sender, stageLimits[_stageId].bet);</span>
+        }
+<span class="hljs-deletion">-       totalPrize = 0;</span>
+
+<span class="hljs-deletion">-       oneShotNft.transferFrom(address(this), _defender, defenderTokenId);</span>
+<span class="hljs-addition">+       oneShotNft.transferFrom(address(this), stageLimits[_stageId].defender, stageLimits[_stageId].defenderNFTId);</span>
+    }
+
+</div></code></pre>
+</details>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>OneShot.sol</code> isn't updating the battles won, breaking the protocol functionality</strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>After a battle is finished, the winner should receive a status update on battlesWon. However, this never happens.</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>The bonus over battles won is not applied. Breaking the functionality.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+  <details>
+  <summary>Add the code below to `OneShot.t.sol`</summary>
+<pre class="hljs"><code><div>    function testBattleWonNeverUpdated() public mintRapper {
+        vm.startPrank(user);
+        oneShot.approve(address(rapBattle), 0);
+        rapBattle.goOnStageOrBattle(0, 0);
+        vm.stopPrank();
+        vm.startPrank(challenger);
+        oneShot.mintRapper();
+        oneShot.approve(address(rapBattle), 1);
+        rapBattle.goOnStageOrBattle(1, 0);
+
+        IOneShot.RapperStats memory statsDefender = oneShot.getRapperStats(0);
+        IOneShot.RapperStats memory statsChallenger = oneShot.getRapperStats(1);
+
+        console.log(statsDefender.battlesWon);
+        console.log(statsChallenger.battlesWon);
+    }
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+  <details>
+  <summary>Update the `OneShot.sol::onlyStreetContract` modifier to accept calls from `RapBattle.sol::_battle` and create the helpe function below</summary>
+<pre class="hljs"><code><div><span class="hljs-addition">+   modifier onlyStreetContract() {</span>
+<span class="hljs-addition">+       require(msg.sender == address(_streetsContract) || msg.sender == address(s_rap), "Not Allowed");</span>
+<span class="hljs-addition">+       _;</span>
+<span class="hljs-addition">+   }</span>
+
+<span class="hljs-addition">+   import {RapBattle} from "./RapBattle.sol";</span>
+
+<span class="hljs-addition">+   event OneShot__RapBattleAddressUpdated();</span>
+
+<span class="hljs-addition">+   function setRapBattleContract(address _rapBattle) external onlyOwner {</span>
+<span class="hljs-addition">+       s_rap = RapBattle(_rapBattle);</span>
+
+<span class="hljs-addition">+       emit OneShot__RapBattleAddressUpdated();</span>
+<span class="hljs-addition">+   }</span>
+
+</div></code></pre>
+  </details>
+  <details>
+  <summary>Update the `RapBattle.sol::_battle` as follow</summary>
+<pre class="hljs"><code><div>    function _battle(uint256 _tokenId, uint256 _credBet) internal {
+        address _defender = defender;
+        require(defenderBet == _credBet, "RapBattle: Bet amounts do not match");
+        uint256 defenderRapperSkill = getRapperSkill(defenderTokenId);
+        uint256 challengerRapperSkill = getRapperSkill(_tokenId);
+        uint256 totalBattleSkill = defenderRapperSkill + challengerRapperSkill;
+        uint256 totalPrize = defenderBet + _credBet;
+
+        uint256 random =
+            uint256(keccak256(abi.encodePacked(block.timestamp, block.prevrandao, msg.sender))) % totalBattleSkill;
+
+        // Reset the defender
+        defender = address(0);
+
+        emit Battle(msg.sender, _tokenId, random &lt; defenderRapperSkill ? _defender : msg.sender);
+
+        // If random &lt;= defenderRapperSkill -&gt; defenderRapperSkill wins, otherwise they lose
+        if (random &lt;= defenderRapperSkill) {
+<span class="hljs-addition">+           IOneShot.RapperStats memory stats = oneShotNft.getRapperStats(defenderTokenId);</span>
+<span class="hljs-addition">+           stats.battlesWon++;</span>
+<span class="hljs-addition">+           oneShotNft.updateRapperStats(defenderTokenId, stats.weakKnees, stats.heavyArms, stats.spaghettiSweater, stats.calmAndReady, stats.battlesWon);</span>
+            // We give them the money the defender deposited, and the challenger's bet
+            credToken.transfer(_defender, defenderBet);
+            credToken.transferFrom(msg.sender, _defender, _credBet);
+        } else {
+<span class="hljs-addition">+           IOneShot.RapperStats memory stats = oneShotNft.getRapperStats(_tokenId);</span>
+<span class="hljs-addition">+           stats.battlesWon++;</span>
+<span class="hljs-addition">+           oneShotNft.updateRapperStats(_tokenId, stats.weakKnees, stats.heavyArms, stats.spaghettiSweater, stats.calmAndReady, stats.battlesWon);</span>
+            // Otherwise, since the challenger never sent us the money, we just give the money in the contract
+            credToken.transfer(msg.sender, _credBet);
+        }
+
+        totalPrize = 0;
+        // Return the defender's NFT
+        oneShotNft.transferFrom(address(this), _defender, defenderTokenId);
+    }
+</div></code></pre>
+  </details>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>Streets.sol::stake</code> function allows users to stake after unstake, breaking the protocol rewards system</strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>The protocol documentation states &quot;Staked Rapper NFTs will earn 1 Cred ERC20/day staked up to 4 maximum&quot;. However, after a user unstake the NFT, he can stake again breaking the maximum reward established for staked NFTs.</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>A user can take advantage of this vulnerability and collect rewards consistently.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+  <details>
+  <summary>Add the code below in `OneShotTest.t.sol`</summary>
+<pre class="hljs"><code><div>    function testIfAUserCanReStakeTheNFT() public mintRapper{
+        vm.startPrank(user);
+        oneShot.approve(address(streets), 0);
+        streets.stake(0);
+        assert(
+            streets.onERC721Received(address(0), user, 0, &quot;&quot;)
+                == bytes4(keccak256(&quot;onERC721Received(address,address,uint256,bytes)&quot;))
+        );
+
+        uint256 userBalanceBeforeUnstake = cred.balanceOf(user);
+
+        console.log(userBalanceBeforeUnstake);
+
+        vm.warp((4* 1 days) + 1);
+
+        streets.unstake(0);
+
+        uint256 userBalancesAfterUnstake = cred.balanceOf(user);
+
+        assertEq(userBalancesAfterUnstake, 4);
+        
+        oneShot.approve(address(streets), 0);
+        streets.stake(0);
+        assert(
+            streets.onERC721Received(address(0), user, 0, &quot;&quot;)
+                == bytes4(keccak256(&quot;onERC721Received(address,address,uint256,bytes)&quot;))
+        );
+
+        vm.warp((8*1 days) + 1);
+
+        streets.unstake(0);
+
+        uint256 userBalanceAfterSecondStake = cred.balanceOf(user);
+
+        assertEq(userBalanceAfterSecondStake, 8);
+    }
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+  <details>
+  <summary>Add the following changes into `Streets.sol::stake`</summary>
+<pre class="hljs"><code><div><span class="hljs-addition">+   error Streets__StakingRewardsAlreadyCollected();</span>
+    function stake(uint256 tokenId) external {
+<span class="hljs-addition">+       if(stakes[tokenId].startTime != 0){</span>
+<span class="hljs-addition">+           revert Streets__StakingRewardsAlreadyCollected();</span>
+<span class="hljs-addition">+       }</span>
+
+        stakes[tokenId] = Stake(block.timestamp, msg.sender);
+        emit Staked(msg.sender, tokenId, block.timestamp);
+        oneShotContract.transferFrom(msg.sender, address(this), tokenId);
+    }
+
+</div></code></pre>
+  </details>
+  <details>
+  <summary>Add the following changes into `Streets.sol::unstake`</summary>
+<pre class="hljs"><code><div>    function unstake(uint256 tokenId) external {
+        require(stakes[tokenId].owner == msg.sender, "Not the token owner");
+        uint256 stakedDuration = block.timestamp - stakes[tokenId].startTime;
+        uint256 daysStaked = stakedDuration / 1 days;
+
+        // Assuming RapBattle contract has a function to update metadata properties
+        IOneShot.RapperStats memory stakedRapperStats = oneShotContract.getRapperStats(tokenId);
+
+        emit Unstaked(msg.sender, tokenId, stakedDuration);
+<span class="hljs-deletion">-        delete stakes[tokenId]; // Clear staking info</span>
+
+        // Apply changes based on the days staked
+        if (daysStaked &gt;= 1) {
+            stakedRapperStats.weakKnees = false;
+            credContract.mint(msg.sender, 1);
+        }
+        if (daysStaked &gt;= 2) {
+            stakedRapperStats.heavyArms = false;
+            credContract.mint(msg.sender, 1);
+        }
+        if (daysStaked &gt;= 3) {
+            stakedRapperStats.spaghettiSweater = false;
+            credContract.mint(msg.sender, 1);
+        }
+        if (daysStaked &gt;= 4) {
+            stakedRapperStats.calmAndReady = true;
+            credContract.mint(msg.sender, 1);
+        }
+
+        // Only call the update function if the token was staked for at least one day
+        if (daysStaked &gt;= 1) {
+            oneShotContract.updateRapperStats(
+                tokenId,
+                stakedRapperStats.weakKnees,
+                stakedRapperStats.heavyArms,
+                stakedRapperStats.spaghettiSweater,
+                stakedRapperStats.calmAndReady,
+                stakedRapperStats.battlesWon
+            );
+        }
+
+        // Continue with unstaking logic (e.g., transferring the token back to the owner)
+        oneShotContract.transferFrom(address(this), msg.sender, tokenId);
+    }
+
+</div></code></pre>
+  </details>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="medium-severity-vulnerabilities">Medium Severity Vulnerabilities</h3>
+<ul>
+<li>
+<p><strong>Centralization Risk for trusted owners</strong></p>
+<ul>
+<li><strong>Description:</strong>
+<ul>
+<li>Contracts have owners with privileged rights to perform admin tasks and need to be trusted to not perform malicious updates or drain funds.</li>
+</ul>
+</li>
+<li><strong>Impact:</strong>
+<ul>
+<li>Contract owner can change the <code>Streets.sol</code> address to an arbitrary address and cut the mint of the Cred for staked Rappers,</li>
+</ul>
+</li>
+<li><strong>Proof of Concept:</strong>
+<ul>
+<li>Access <code>CredToken.sol::setStreetsContract</code>;</li>
+<li>Input an arbitrary address or even the address(0);</li>
+<li>Done.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Missing events access control, leading to difficulty in tracking changes in <code>OneShot.sol</code></strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>Detect missing events for critical access control parameters</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>A malicious user can take control of the SmartContracs and update the addresses unnoticed</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+  <details>
+  <summary>`OneShot.sol::setStreetsContract`</summary>
+<pre class="hljs"><code><div>    function setStreetsContract(address streetsContract) public onlyOwner {
+        _streetsContract = Streets(streetsContract);
+@&gt;      
+    }
+</div></code></pre>
+  </details>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="low-severity-vulnerabilities">Low Severity Vulnerabilities</h3>
+<ul>
+<li><strong>Missing <code>address(0)</code> validation</strong>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>Detect missing zero address validation.</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>Owner can mistakenly add an address(0);</li>
+</ul>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+  <details>
+  <summary>`CredToken.sol`</summary>
+<pre class="hljs"><code><div>    function setStreetsContract(address streetsContract) public onlyOwner {
+<span class="hljs-addition">+       if(streetsContract == address(0)){</span>
+<span class="hljs-addition">+         revert</span>
+<span class="hljs-addition">+       }</span>
+        _streetsContract = Streets(streetsContract);
+    }
+</div></code></pre>
+  </details>
+  <details>
+  <summary>`OneShot.sol`</summary>
+<pre class="hljs"><code><div>    function setStreetsContract(address streetsContract) public onlyOwner {
+<span class="hljs-addition">+       if(streetsContract == address(0)){</span>
+<span class="hljs-addition">+         revert</span>
+<span class="hljs-addition">+       }</span>
+        _streetsContract = Streets(streetsContract);
+    }
+</div></code></pre>
+  </details>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="gas-recommendations">Gas Recommendations</h3>
+<ul>
+<li>
+<p><strong>Functions not used internally could be marked external</strong></p>
+  <details>
+  <summary>Found in `CredToken.sol`</summary>
+<pre class="hljs"><code><div>    function setStreetsContract
+    function mint
+</div></code></pre>
+  </details>
+  <details>
+  <summary>Found in `OneShot.sol`</summary>
+<pre class="hljs"><code><div>      function setStreetsContract
+
+      function mintRapper
+
+      function updateRapperStats
+
+      function getRapperStats
+
+      function getNextTokenId
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Functions only used by the contract could be marked private</strong></p>
+  <details>
+  <summary>Found in `OneShot.sol`</summary>
+<pre class="hljs"><code><div>    - `OneShot.sol::getRapperStats` is the rapperStats getter.
+<span class="hljs-deletion">-   mapping(uint256 =&gt; RapperStats) public rapperStats;</span>
+<span class="hljs-addition">+   mapping(uint256 =&gt; RapperStats) private rapperStats;</span>
+</div></code></pre>
+  </details>
+  <details>
+  <summary>`RapBattle.sol`</summary>
+<pre class="hljs"><code><div><span class="hljs-deletion">-   function getRapperSkill(uint256 _tokenId) public view returns (uint256 finalSkill) {}</span>
+<span class="hljs-addition">+   function getRapperSkill(uint256 _tokenId) private view returns (uint256 finalSkill) {}</span>
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>State variables that could be declared immutable</strong></p>
+  <details>
+  <summary>`RapBattle.sol`</summary>
+<pre class="hljs"><code><div><span class="hljs-deletion">-   IOneShot public oneShotNft;</span>
+<span class="hljs-addition">+   IOneShot immutable oneShotNft;</span>
+<span class="hljs-deletion">-   ICredToken public credToken;</span>
+<span class="hljs-addition">+   ICredToken immutable credToken;</span>
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Unused import</strong></p>
+  <details>
+  <summary>`OneShot.sol`</summary>
+<pre class="hljs"><code><div><span class="hljs-deletion">- import {Credibility} from "./CredToken.sol";</span>
+</div></code></pre>
+  </details>
+</li>
+</ul>
+<h3 id="informational-recommendations">Informational Recommendations</h3>
+<ul>
+<li>
+<p><strong>Naming best practices for imports aren't been followed</strong></p>
+  <details>
+  <summary>Found in `CredToken.sol`</summary>
+<pre class="hljs"><code><div><span class="hljs-deletion">- import "@openzeppelin/contracts/token/ERC20/ERC20.sol";</span>
+<span class="hljs-addition">+ import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";</span>
+<span class="hljs-deletion">- import "@openzeppelin/contracts/access/Ownable.sol";</span>
+<span class="hljs-addition">+ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";</span>
+</div></code></pre>
+  </details>
+  <details>
+  <summary>Found in `Streets.sol`</summary>
+<pre class="hljs"><code><div><span class="hljs-deletion">-   import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";</span>
+<span class="hljs-addition">+   import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";</span>
+</div></code></pre>
+  </details>
+</li>
+</ul>
+
+</body>
+</html>
