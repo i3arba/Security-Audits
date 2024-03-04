@@ -20,6 +20,9 @@
 </br>
 
 # Table of Contents
+<details>
+
+<summary>See table</summary>
 
 - [Table of Contents](#table-of-contents)
 - [Protocol Summary](#protocol-summary)
@@ -37,7 +40,12 @@
   - [Conclusion](#conclusion)
   - [Appendices](#appendices)
 
-# Protocol Summary
+</details>
+</br>
+
+# About Barba
+Solidity Developer, Security Researcher, Founder of Bellum Galaxy and Chainlink Advocate. With three months of programming experience I developed a Top Quality Project at Chainlink Constellation Hackathon. In my first competitive audit, I achieved a Top 5 position.
+I am a competitive person who daily fights for improvement. Driven by this way of thinking I founded Bellum Galaxy, a educacional community focused on science and technology to help people face life challeges, and grow personally and professionally.
 
 # Disclaimer
 The Bellum Galaxy team makes all effort to find as many vulnerabilities in the code in the given time period, but holds no responsibilities for the findings provided in this document. A security audit by the team is not an endorsement of the underlying business or product. The audit was time-boxed and the review of the code was solely on the security aspects of the Solidity implementation of the contracts.
@@ -53,6 +61,8 @@ The Bellum Galaxy team makes all effort to find as many vulnerabilities in the c
 
 We use the [CodeHawks](https://docs.codehawks.com/hawks-auditors/how-to-evaluate-a-finding-severity) severity matrix to determine severity. See the documentation for more details.
 
+# Protocol Summary
+
 # Audit Details
 
 - **Project Name:**
@@ -61,16 +71,21 @@ We use the [CodeHawks](https://docs.codehawks.com/hawks-auditors/how-to-evaluate
 
 - **Audit Date:**
 
-- **Audit Tools Used:**
-
-- **Auditors:**
-  - Barba
+- **The findings described in this document correspond the following commit hash:**
 
 ## Scope
-- `PoolFactory.sol`
-- `TSwapPool.sol`
+
+```
+#-- src
+|   #-- Contract.sol
+|   #-- Contract.sol
+|   #-- Contract.sol
+|   #-- Contract.sol
+```
 
 ## Roles
+
+# Executive Summary
 
 ## Issues found
 
@@ -82,31 +97,28 @@ We use the [CodeHawks](https://docs.codehawks.com/hawks-auditors/how-to-evaluate
 | Info      | 9                      |
 | Total     | 17                     |
 
-## Methodology
 
-The strategy was to break protocol invariants using Stateless and Stateful testing, apply Slither, and Aderyn, and then dive into the code review.
+# Audit Findings
 
-## Audit Findings
+## High Severity Vulnerabilities
 
-### High Severity Vulnerabilities
-
-- **Vulnerability 1**
+### Vulnerability 1
   - **Description:**
   - **Impact:**
   - **Proof of Concept:**
   - **Recommendation:**
 
-### Medium Severity Vulnerabilities
+## Medium Severity Vulnerabilities
 
-- **Vulnerability 1**
+### Vulnerability 1
   - **Description:**
   - **Impact:**
   - **Proof of Concept:**
   - **Recommendation:**
 
-### Low Severity Vulnerabilities
+## Low Severity Vulnerabilities
 
-- **Vulnerability 1**
+### Vulnerability 1
   - **Description:**
   - **Impact:**
   - **Proof of Concept:**
@@ -114,13 +126,13 @@ The strategy was to break protocol invariants using Stateless and Stateful testi
 
 ### Gas Observations
 
-- **Observation 1**
+### Vulnerability 1
   - **Description:**
   - **Recommendation:**
 
 ### Informational Observations
 
-- **Observation 1**
+### Vulnerability 1
   - **Description:**
   - **Recommendation:**
 
