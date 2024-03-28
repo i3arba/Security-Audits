@@ -37,6 +37,20 @@ My journey into competitive auditing has been incredibly rewarding. Here, I show
 
 - Yet to fill.
 
+### Tools
+- Foundry
+- Solidity Code Metrics
+- Slither
+- Aderyn
+
+### Techniques
+- Manual Review
+- Unit Test
+- Integration Test
+- Forked Test
+- Stateless Fuzzing (Improving)
+- Stateful Fuzzing (Improving)
+
 ## Acknowledgments
 
 I extend my deepest gratitude to all mentors and teams that have guided me through this journey, especially Patrick Collins and the entire Cyfrin team. Their support and mentorship have been instrumental in my development as a security auditor.
