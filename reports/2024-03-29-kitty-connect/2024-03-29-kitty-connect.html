@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2024-03-29-kitty-connect.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<div align="center">
+<p><img src="./logo.png" alt="Bellum Galaxy"></p>
+</div>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<h1 id="table-of-contents">Table of Contents</h1>
+<details>
+<summary>See table</summary>
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#about-barba">About Barba</a></li>
+<li><a href="#disclaimer">Disclaimer</a></li>
+<li><a href="#risk-classification">Risk Classification</a></li>
+<li><a href="#protocol-summary">Protocol Summary</a></li>
+<li><a href="#audit-details">Audit Details</a>
+<ul>
+<li><a href="#scope">Scope</a></li>
+<li><a href="#roles">Roles</a></li>
+</ul>
+</li>
+<li><a href="#executive-summary">Executive Summary</a>
+<ul>
+<li><a href="#issues-found">Issues found</a></li>
+</ul>
+</li>
+<li><a href="#audit-findings">Audit Findings</a>
+<ul>
+<li><a href="#high-severity-vulnerabilities">High Severity Vulnerabilities</a>
+<ul>
+<li><a href="#kittybridgesolbridgenftwithdata-doesnt-implement-access-control-mechanisms-leading-to-free-mint-cross-chain-and-waste-of-link-funds"><code>KittyBridge.sol::bridgeNftWithData</code> doesn't implement access control mechanisms, leading to free mint cross-chain and waste of link funds.</a></li>
+<li><a href="#kittyconnectsolmintbridgednft-increments-the-counter-every-time-one-nft-is-bridged-in-inflating-the-totalsupply-with-copies-and-creating-collection-id-collisions"><code>KittyConnect.sol::mintBridgedNFT</code> increments the counter every time one NFT is bridged in, inflating the totalSupply with copies and creating collection ID collisions</a></li>
+<li><a href="#kittyconnectsolmintcattonewowner-didnt-check-for-input-values-leading-to-the-creation-of-nfts-without-information-or-even-manipulation"><code>KittyConnect.sol::mintCatToNewOwner</code> didn't check for input values, leading to the creation of NFTs without information or even manipulation.</a></li>
+</ul>
+</li>
+<li><a href="#medium-severity-vulnerabilities">Medium Severity Vulnerabilities</a>
+<ul>
+<li><a href="#kittyconnectsolsafetransferfrom-didnt-update-the-owner-registry-accumulating-all-the-cats-that-he-has-and-the-ones-he-already-transferred"><code>KittyConnect.sol::safeTransferFrom</code> didn't update the owner registry, accumulating all the cats that he has, and the ones he already transferred.</a></li>
+<li><a href="#kittyconnectsolbridgenfttoanotherchain-is-missing-the-idx-data-in-the-bridge-message-breaking-the-protocols-purpose"><code>KittyConnect.sol::bridgeNftToAnotherChain</code> is missing the <code>idx</code> data in the bridge message, breaking the protocol's purpose.</a></li>
+</ul>
+</li>
+<li><a href="#low-severity-vulnerabilities">Low Severity Vulnerabilities</a>
+<ul>
+<li><a href="#kittyconnectsolmintcattonewowner-doesnt-follow-the-cei-pattern"><code>KittyConnect.sol::mintCatToNewOwner</code> doesn't follow the CEI pattern.</a></li>
+<li><a href="#several-kittybridgesol-functions-dont-emit-events-after-storage-update">Several <code>KittyBridge.sol</code> functions don't emit events after storage update.</a></li>
+</ul>
+</li>
+<li><a href="#gas-observations">Gas Observations</a>
+<ul>
+<li><a href="#consider-implementing-custom-errors-instead-of-require-statements">Consider implementing <code>custom errors</code> instead of <code>require</code> statements</a></li>
+</ul>
+</li>
+<li><a href="#informational-observations">Informational Observations</a>
+<ul>
+<li><a href="#the-kittyconnectsoltokensredeemedforvetvisit-event-is-not-being-used">The <code>KittyConnect.sol::TokensRedeemedForVetVisit</code> event is not being used.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</details>
+</br>
+<h1 id="about-barba">About Barba</h1>
+<p>Solidity Developer, Security Researcher, Founder of Bellum Galaxy and Chainlink Advocate. With three months of programming experience I developed a Top Quality Project at Chainlink Constellation Hackathon. In my first competitive audit, I achieved a Top 5 position.
+I am a competitive person who daily fights for improvement. Driven by this way of thinking I founded Bellum Galaxy, a educacional community focused on science and technology to help people face life challeges, and grow personally and professionally.</p>
+<h1 id="disclaimer">Disclaimer</h1>
+<p>The Bellum Galaxy team makes all effort to find as many vulnerabilities in the code in the given time period, but holds no responsibilities for the findings provided in this document. A security audit by the team is not an endorsement of the underlying business or product. The audit was time-boxed and the review of the code was solely on the security aspects of the Solidity implementation of the contracts.</p>
+<h1 id="risk-classification">Risk Classification</h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>Impact</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td>High</td>
+<td>Medium</td>
+<td>Low</td>
+</tr>
+<tr>
+<td></td>
+<td>High</td>
+<td>H</td>
+<td>H/M</td>
+<td>M</td>
+</tr>
+<tr>
+<td>Likelihood</td>
+<td>Medium</td>
+<td>H/M</td>
+<td>M</td>
+<td>M/L</td>
+</tr>
+<tr>
+<td></td>
+<td>Low</td>
+<td>M</td>
+<td>M/L</td>
+<td>L</td>
+</tr>
+</tbody>
+</table>
+<p>We use the <a href="https://docs.codehawks.com/hawks-auditors/how-to-evaluate-a-finding-severity">CodeHawks</a> severity matrix to determine severity. See the documentation for more details.</p>
+<h1 id="protocol-summary">Protocol Summary</h1>
+<h1 id="audit-details">Audit Details</h1>
+<ul>
+<li>
+<p><strong>Project Name:</strong></p>
+<ul>
+<li>Kitty Connect</li>
+</ul>
+</li>
+<li>
+<p><strong>Smart Contract Address:</strong></p>
+<ul>
+<li>None</li>
+</ul>
+</li>
+<li>
+<p><strong>Audit Date:</strong></p>
+<ul>
+<li>29/03/2024</li>
+</ul>
+</li>
+<li>
+<p><strong>The findings described in this document correspond the following commit hash:</strong></p>
+<ul>
+<li>c0a6f2bb5c853d7a470eb684e1954dba261fb167</li>
+</ul>
+</li>
+</ul>
+<h2 id="scope">Scope</h2>
+<pre class="hljs"><code><div>#-- src
+|   #-- KittyBridge.sol
+|   #-- KittyConnect.sol
+</div></code></pre>
+<h2 id="roles">Roles</h2>
+<ul>
+<li>Cat Owner
+<ul>
+<li>User who buy the cat from our branches and mint NFT for buying a cat.</li>
+</ul>
+</li>
+<li>Shop Partner
+<ul>
+<li>Shop partner provide services to the cat owner to buy cat.</li>
+</ul>
+</li>
+<li>KittyConnect Owner
+<ul>
+<li>Owner of the contract who can transfer the ownership of the contract to another address.</li>
+</ul>
+</li>
+</ul>
+<h1 id="executive-summary">Executive Summary</h1>
+<h2 id="issues-found">Issues found</h2>
+<table>
+<thead>
+<tr>
+<th>Severtity</th>
+<th>Number of issues found</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>High</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Low</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Info</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Total</td>
+<td>17</td>
+</tr>
+</tbody>
+</table>
+<h1 id="audit-findings">Audit Findings</h1>
+<h2 id="high-severity-vulnerabilities">High Severity Vulnerabilities</h2>
+<h3 id="kittybridgesolbridgenftwithdata-doesnt-implement-access-control-mechanisms-leading-to-free-mint-cross-chain-and-waste-of-link-funds"><code>KittyBridge.sol::bridgeNftWithData</code> doesn't implement access control mechanisms, leading to free mint cross-chain and waste of link funds.</h3>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li><code>KittyConnect.sol::bridgeNftToAnotherChain</code> provides a way to transfer NFTs cross-chain through the <code>KittyBridge.sol::bridgeNftWithData</code> function. However, the <code>KittyBridge.sol::bridgeNftWithData</code> doesn't control access, allowing a malicious user to call it directly.</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>This missimplementation can lead to uncontrolled NFT emission on destination chains and use of all link funds.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+  <details>
+  <summary>Add the code below to `KittyTest.t.sol`</summary>
+<pre class="hljs"><code><div>
+    function testPoCAnyoneCanBridgeNfts() public {
+        address sender = makeAddr(&quot;sender&quot;);
+        bytes memory data = abi.encode(makeAddr(&quot;catOwner&quot;), &quot;meowdy&quot;, &quot;ragdoll&quot;, &quot;ipfs://QmbxwGgBGrNdXPm84kqYskmcMT3jrzBN8LzQjixvkz4c62&quot;, block.timestamp, partnerA);
+
+        vm.prank(kittyConnectOwner);
+        kittyBridge.allowlistSender(networkConfig.router, true);
+
+        vm.prank(sender);
+        kittyBridge.bridgeNftWithData(networkConfig.otherChainSelector, sender, data);
+    }
+    
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+<ul>
+<li>
+<p>Implement the <code>onlyKittyConnect</code> modifier to control access.</p>
+<details>
+<summary>Adjust the code as follows</summary>
+<pre class="hljs"><code><div>
+    function bridgeNftWithData(uint64 _destinationChainSelector,
+                              address _receiver, 
+                              bytes memory _data) external 
+<span class="hljs-addition">+                                                 onlyKittyConnect</span>
+                                                  onlyAllowlistedDestinationChain(_destinationChainSelector)
+                                                  validateReceiver(_receiver) 
+                                                  returns (bytes32 messageId){
+        // Create an EVM2AnyMessage struct in memory with necessary information for sending a cross-chain message
+        Client.EVM2AnyMessage memory evm2AnyMessage = _buildCCIPMessage(_receiver, _data, address(s_linkToken));
+
+        // Initialize a router client instance to interact with cross-chain router
+        IRouterClient router = IRouterClient(this.getRouter());
+
+        // Get the fee required to send the CCIP message
+        uint256 fees = router.getFee(_destinationChainSelector, evm2AnyMessage);
+
+        if (fees &gt; s_linkToken.balanceOf(address(this))) {
+            revert KittyBridge__NotEnoughBalance(s_linkToken.balanceOf(address(this)), fees);
+        }
+
+        messageId = router.ccipSend(_destinationChainSelector, evm2AnyMessage);
+
+        emit MessageSent(messageId, _destinationChainSelector, _receiver, _data, address(s_linkToken), fees);
+
+        return messageId;
+    }
+
+</div></code></pre>
+</details>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="kittyconnectsolmintbridgednft-increments-the-counter-every-time-one-nft-is-bridged-in-inflating-the-totalsupply-with-copies-and-creating-collection-id-collisions"><code>KittyConnect.sol::mintBridgedNFT</code> increments the counter every time one NFT is bridged in, inflating the totalSupply with copies and creating collection ID collisions</h3>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li><code>KittyConnect.sol::mintBridgedNFT</code> increments the counter every time one NFT is bridged in. However, the ID is never subtracted, once the NFT is bridged out.</li>
+<li>Once an NFT is bridged, it is transferred. Transference means the particular NFT, with those specifications, goes to another blockchain. It doesn't become something else, different.</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>With this approach, several duplicates will be created, inflating the total supply every time an NFT is bridged out and comes back in. It also creates collection ID collisions through all the blockchains that receive these NFTs.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+<details>
+<summary>Add the following code to `KittyTest.t.sol`</summary>
+<pre class="hljs"><code><div>
+    function testPoCNFTIdIncrementedOnNFTReturn() public {
+        address DogsGuy = makeAddr(&quot;BARBA&quot;);
+        bytes memory data = abi.encode(DogsGuy, &quot;Athena&quot;, &quot;AmericanBull&quot;, &quot;ipfs://QmbxwGgBGrNdXPm84kqYskmcMT3jrzBN8LzQjixvkz4c62&quot;, block.timestamp, partnerA);
+        
+        uint256 catId = kittyConnect.getTokenCounter();
+
+        vm.prank(address(kittyBridge));
+        kittyConnect.mintBridgedNFT(data);
+
+        uint256 catIdAfterBridginIn = kittyConnect.getTokenCounter();
+
+        assertEq(catId, 0);
+        assertEq(catIdAfterBridginIn, 1);
+    }
+
+</div></code></pre>
+</details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+<ul>
+<li>
+<p>Consider adjusting the protocol logic to allow the NFT to maintain its original ID in any blockchain.</p>
+<details>
+<summary> Adjust the code of `KittyConnect.sol::mintBridgedNFT` as follows</summary>
+<pre class="hljs"><code><div>
+    function mintBridgedNFT(bytes memory data) external onlyKittyBridge {
+        (
+            address catOwner, 
+<span class="hljs-addition">+           uint256 tokenId,</span>
+            string memory catName, 
+            string memory breed, 
+            string memory imageIpfsHash, 
+            uint256 dob, 
+            address shopPartner
+        ) = abi.decode(data, (address, uint256, string, string, string, uint256, address));
+
+<span class="hljs-deletion">-       uint256 tokenId = kittyTokenCounter;</span>
+<span class="hljs-deletion">-       kittyTokenCounter++;</span>
+
+        s_catInfo[tokenId] = CatInfo({
+            catName: catName,
+            breed: breed,
+            image: imageIpfsHash,
+            dob: dob,
+            prevOwner: new address[](0),
+            shopPartner: shopPartner,
+            idx: s_ownerToCatsTokenId[catOwner].length
+        });
+
+        emit NFTBridged(block.chainid, tokenId);
+        _safeMint(catOwner, tokenId);
+    }
+
+</div></code></pre>
+</details>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="kittyconnectsolmintcattonewowner-didnt-check-for-input-values-leading-to-the-creation-of-nfts-without-information-or-even-manipulation"><code>KittyConnect.sol::mintCatToNewOwner</code> didn't check for input values, leading to the creation of NFTs without information or even manipulation.</h3>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>The protocol's purpose is to allow users to mint an NFT that will store the information of a cat and track all related data. However, the <code>KittyConnect.sol::mintCatToNewOwner</code> is not validating inputs before emitting the NFT.</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>Skipping the validation process can incur on NFTs with empty data. Or even manipulated data by <code>ShopPartners</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+  <details>
+  <summary>Add the following PoC to `KittyTest.t.sol`</summary>
+<pre class="hljs"><code><div>    function testPoCShopPartnerCanManipulateCatInfo() public {
+        string memory catImageIpfsHash = &quot;ipfs://QmbxwGgBGrNdXPm84kqYskmcMT3jrzBN8LzQjixvkz4c62&quot;;
+        uint256 tokenId = kittyConnect.getTokenCounter();
+
+        vm.prank(partnerA);
+        kittyConnect.mintCatToNewOwner(user, catImageIpfsHash, &quot;&quot;, &quot;&quot;, 1);
+        
+        uint32 timeNow = 1711738682;
+        vm.warp(timeNow);
+
+        uint256 catAge = kittyConnect.getCatAge(tokenId);
+
+        assertTrue(catAge &gt; 1_000_000_000);
+    }
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+<ul>
+<li>
+<p>Always check for input values. Especially if it's not updatable.</p>
+<details>
+<summary>Implement the following code</summary>
+<pre class="hljs"><code><div>    function mintCatToNewOwner(address catOwner, string memory catIpfsHash, string memory catName, string memory breed, uint256 dob) external onlyShopPartner {
+        require(!s_isKittyShop[catOwner], "KittyConnect__CatOwnerCantBeShopPartner");
+<span class="hljs-addition">+       require(catOwner != address(0), "KittyConnect__InvalidOwnerAddress");</span>
+<span class="hljs-addition">+       require(bytes(catIpfsHash).length &gt; 0, "KittyConnect__EmptyIpfsHash");</span>
+<span class="hljs-addition">+       require(bytes(catName).length &gt; 0, "KittyConnect__EmptyCatName");</span>
+<span class="hljs-addition">+       require(bytes(breed).length &gt; 0, "KittyConnect__EmptyBreed");</span>
+<span class="hljs-addition">+       require(dob &gt; 0 &amp;&amp; dob &lt;= block.timestamp, "KittyConnect__InvalidDOB");</span>
+
+        uint256 tokenId = kittyTokenCounter;
+        kittyTokenCounter++;
+
+        s_catInfo[tokenId] = CatInfo({
+            catName: catName,
+            breed: breed,
+            image: catIpfsHash,
+            dob: dob,
+            prevOwner: new address[](0),
+            shopPartner: msg.sender,
+            idx: s_ownerToCatsTokenId[catOwner].length
+        });
+
+        s_ownerToCatsTokenId[catOwner].push(tokenId);
+
+        _safeMint(catOwner, tokenId);
+        emit CatMinted(tokenId, catIpfsHash);
+    }
+</div></code></pre>
+</details>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="medium-severity-vulnerabilities">Medium Severity Vulnerabilities</h2>
+<h3 id="kittyconnectsolsafetransferfrom-didnt-update-the-owner-registry-accumulating-all-the-cats-that-he-has-and-the-ones-he-already-transferred"><code>KittyConnect.sol::safeTransferFrom</code> didn't update the owner registry, accumulating all the cats that he has, and the ones he already transferred.</h3>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li><code>KittyConnect.sol</code> allows owners to transfer their cats to a third party. The <code>KittyConnect.sol::safeTransferFrom</code> function was implemented and is operational to enable it. However, the storage is not updated correctly. Although the owner transfers his cat, his registers will always store the registry about it.</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>The previous owner will always have all the registers of cats that he had once. It will also keep increasing his registers. For example:
+<ul>
+<li>If he bought four cats and, for some reason, he sold these four cats.</li>
+<li>The next buy will be number five. And not the number one, as it should be, considering that he is no longer the owner of the first four.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+  <details>
+  <summary>Add the following code to `KittyTest.t.sol`</summary>
+<pre class="hljs"><code><div>
+    function testPoCPreviousOwnerInfoItsNotUpdated() public {
+        string memory catImageIpfsHash = &quot;ipfs://QmbxwGgBGrNdXPm84kqYskmcMT3jrzBN8LzQjixvkz4c62&quot;;
+        uint256 tokenId = kittyConnect.getTokenCounter();
+        address newOwner = makeAddr(&quot;newOwner&quot;);
+
+        // Shop Partner gives Cat to user
+        vm.prank(partnerA);
+        kittyConnect.mintCatToNewOwner(user, catImageIpfsHash, &quot;Meowdy&quot;, &quot;Ragdoll&quot;, block.timestamp);
+
+        // Now user wants to transfer the cat to a new owner
+        // first user approves the cat's token id to new owner
+        vm.prank(user);
+        kittyConnect.approve(newOwner, tokenId);
+
+        // then the shop owner checks up with the new owner and confirms the transfer
+        vm.expectEmit(false, false, false, true, address(kittyConnect));
+        emit CatTransferredToNewOwner(user, newOwner, tokenId);
+        vm.prank(partnerA);
+        kittyConnect.safeTransferFrom(user, newOwner, tokenId);
+
+        uint256[] memory firstOwner = kittyConnect.getCatsTokenIdOwnedBy(user);
+        uint256[] memory newOwnerTokenIds = kittyConnect.getCatsTokenIdOwnedBy(newOwner);
+
+        KittyConnect.CatInfo memory catInfo = kittyConnect.getCatInfo(tokenId);
+        string memory tokenUri = kittyConnect.tokenURI(tokenId);
+
+        assertEq(firstOwner.length, 1);
+    }
+
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+<ul>
+<li>
+<p>Always remember to update all storage dependencies related to the element being utilized.</p>
+<details>
+<summary>Implement the following adjustments</summary>
+<pre class="hljs"><code><div>
+    function _updateOwnershipInfo(address currCatOwner, address newOwner, uint256 tokenId) internal {        
+        //Push the current owner as a previous one.
+        s_catInfo[tokenId].prevOwner.push(currCatOwner);
+        //Update cat info, ading the number os cats of the next owner.
+        s_catInfo[tokenId].idx = s_ownerToCatsTokenId[newOwner].length;
+        //Push the cat into the newOwner ownership track.
+        s_ownerToCatsTokenId[newOwner].push(tokenId);
+
+<span class="hljs-addition">+       _removeCatFromOwner(currCatOwner, tokenId);</span>
+    }
+
+<span class="hljs-addition">+   function _removeCatFromOwner(address owner, uint256 tokenId) internal {</span>
+<span class="hljs-addition">+       uint256 lastCatIndex = s_ownerToCatsTokenId[owner].length - 1;</span>
+<span class="hljs-addition">+       uint256 catIndex;</span>
+        
+<span class="hljs-addition">+       for(uint256 i = 0; i &lt;= lastCatIndex; i++) {</span>
+<span class="hljs-addition">+           if(s_ownerToCatsTokenId[owner][i] == tokenId) {</span>
+<span class="hljs-addition">+               catIndex = i;</span>
+<span class="hljs-addition">+               break;</span>
+<span class="hljs-addition">+           }</span>
+<span class="hljs-addition">+       }</span>
+
+<span class="hljs-addition">+       if (catIndex &lt; lastCatIndex) {</span>
+<span class="hljs-addition">+           s_ownerToCatsTokenId[owner][catIndex] = s_ownerToCatsTokenId[owner][lastCatIndex];</span>
+<span class="hljs-addition">+       }</span>
+<span class="hljs-addition">+       s_ownerToCatsTokenId[owner].pop();</span>
+<span class="hljs-addition">+   }</span>
+
+</div></code></pre>
+</details>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="kittyconnectsolbridgenfttoanotherchain-is-missing-the-idx-data-in-the-bridge-message-breaking-the-protocols-purpose"><code>KittyConnect.sol::bridgeNftToAnotherChain</code> is missing the <code>idx</code> data in the bridge message, breaking the protocol's purpose.</h3>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>Store Cat information is the core of the Kitty protocol. Although, the <code>KittyConnect.sol::bridgeNftToAnotherChain</code> function fails to deliver it by excluding the parameter <code>idx</code> of the <code>KittyConnect.sol::CatInfo</code> struct.</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>This not only breaks the protocol core but also private potential new owners and the current owner itself from clear information about your own asset.</li>
+<li>As follows the function implementation, this info is already deleted from the storage. So, the information is also lost forever.</li>
+</ul>
+</li>
+<li>
+<p><strong>Proof of Concept:</strong></p>
+  <details>
+  <summary>See the miss implementation below</summary>
+<pre class="hljs"><code><div>
+    function bridgeNftToAnotherChain(uint64 destChainSelector, address destChainBridge, uint256 tokenId) external {
+        address catOwner = _ownerOf(tokenId);
+
+        require(msg.sender == catOwner);
+
+        CatInfo memory catInfo = s_catInfo[tokenId];
+        uint256 idx = catInfo.idx;
+        //@audit-high missing information. The position on the cat ownership array is missing.
+@&gt;      bytes memory data = abi.encode(catOwner, catInfo.catName, catInfo.breed, catInfo.image, catInfo.dob, catInfo.shopPartner);
+
+        _burn(tokenId);
+        delete s_catInfo[tokenId];
+
+        uint256[] memory userTokenIds = s_ownerToCatsTokenId[msg.sender];
+        uint256 lastItem = userTokenIds[userTokenIds.length - 1];
+
+        //@audit-high pop the last registry without check if it's the right cat.
+        s_ownerToCatsTokenId[msg.sender].pop();
+
+        if (idx &lt; (userTokenIds.length - 1)) {
+            s_ownerToCatsTokenId[msg.sender][idx] = lastItem;
+        }
+
+        emit NFTBridgeRequestSent(block.chainid, destChainSelector, destChainBridge, tokenId);
+        i_kittyBridge.bridgeNftWithData(destChainSelector, destChainBridge, data);
+    }
+
+</div></code></pre>
+  </details>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+  <details>
+  <summary>Adjust the code as follow</summary>
+<pre class="hljs"><code><div>
+    function bridgeNftToAnotherChain(uint64 destChainSelector, address destChainBridge, uint256 tokenId) external {
+        address catOwner = _ownerOf(tokenId);
+
+        require(msg.sender == catOwner);
+
+        CatInfo memory catInfo = s_catInfo[tokenId];
+        uint256 idx = catInfo.idx;
+        //@audit-high missing information. The position on the cat ownership array is missing.
+<span class="hljs-deletion">-       bytes memory data = abi.encode(catOwner, catInfo.catName, catInfo.breed, catInfo.image, catInfo.dob, catInfo.shopPartner);</span>
+<span class="hljs-addition">+       bytes memory data = abi.encode(catOwner, catInfo.catName, catInfo.breed, catInfo.image, catInfo.dob, catInfo.shopPartner, idx);</span>
+
+        _burn(tokenId);
+        delete s_catInfo[tokenId];
+
+        uint256[] memory userTokenIds = s_ownerToCatsTokenId[msg.sender];
+        uint256 lastItem = userTokenIds[userTokenIds.length - 1];
+
+        //@audit-high pop the last registry without check if it's the right cat.
+        s_ownerToCatsTokenId[msg.sender].pop();
+
+        if (idx &lt; (userTokenIds.length - 1)) {
+            s_ownerToCatsTokenId[msg.sender][idx] = lastItem;
+        }
+
+        emit NFTBridgeRequestSent(block.chainid, destChainSelector, destChainBridge, tokenId);
+        i_kittyBridge.bridgeNftWithData(destChainSelector, destChainBridge, data);
+    }
+
+</div></code></pre>
+  </details>
+</li>
+</ul>
+<h2 id="low-severity-vulnerabilities">Low Severity Vulnerabilities</h2>
+<h3 id="kittyconnectsolmintcattonewowner-doesnt-follow-the-cei-pattern"><code>KittyConnect.sol::mintCatToNewOwner</code> doesn't follow the CEI pattern.</h3>
+<ul>
+<li><strong>Description:</strong>
+<ul>
+<li><code>KittyConnect.sol::mintCatToNewOwner</code> emits the <code>KittyConnect.sol::CatMinted</code> after a function call.</li>
+</ul>
+</li>
+<li><strong>Impact:</strong>
+<ul>
+<li>Event emission after calls can open opportunities for the manipulation of events. If this event is being monitored by another mechanism it can lead to unexpected outcomes.</li>
+</ul>
+</li>
+<li><strong>Recommendation:</strong>
+<ul>
+<li>Always follow the CEI pattern.</li>
+</ul>
+</li>
+</ul>
+<h3 id="several-kittybridgesol-functions-dont-emit-events-after-storage-update">Several <code>KittyBridge.sol</code> functions don't emit events after storage update.</h3>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>
+<p>The following functions don't implement events after storage update:</p>
+  <details>
+  <summary>Verify instances below</summary>
+<pre class="hljs"><code><div>    function allowlistDestinationChain(uint64 _destinationChainSelector, bool allowed) external onlyOwner {
+        allowlistedDestinationChains[_destinationChainSelector] = allowed;
+    }
+</div></code></pre>
+<pre class="hljs"><code><div>    function allowlistSourceChain(uint64 _sourceChainSelector, bool allowed) external onlyOwner {
+        allowlistedSourceChains[_sourceChainSelector] = allowed;
+    }
+</div></code></pre>
+<pre class="hljs"><code><div>    function allowlistSender(address _sender, bool allowed) external onlyOwner {
+        allowlistedSenders[_sender] = allowed;
+    }
+</div></code></pre>
+<pre class="hljs"><code><div>    function updateGaslimit(uint256 gasLimit) external onlyOwner {
+        gaslimit = gasLimit;
+    }
+</div></code></pre>
+  </details>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>Loss of transparency on protocol process dificulting track of critical information.</li>
+</ul>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+<ul>
+<li>Follow best practices and always emit an event after storage update.</li>
+</ul>
+</li>
+</ul>
+<h2 id="gas-observations">Gas Observations</h2>
+<h3 id="consider-implementing-custom-errors-instead-of-require-statements">Consider implementing <code>custom errors</code> instead of <code>require</code> statements</h3>
+<ul>
+<li>
+<p><strong>Description:</strong></p>
+<ul>
+<li>
+<p>Update the following instances with <code>custom errors</code></p>
+<details>
+<summary>Check the instances bellow</summary>
+<pre class="hljs"><code><div>    modifier onlyKittyConnectOwner() {
+        //@audit-gas consider use custom errors
+        require(msg.sender == i_kittyConnectOwner, &quot;KittyConnect__NotKittyConnectOwner&quot;);
+        _;
+    }
+</div></code></pre>
+<pre class="hljs"><code><div>    modifier onlyShopPartner() {
+        //@audit-gas consider use custom errors
+        require(s_isKittyShop[msg.sender], &quot;KittyConnect__NotAPartner&quot;);
+        _;
+    }
+</div></code></pre>
+<pre class="hljs"><code><div>    modifier onlyKittyBridge() {
+        //@audit-gas consider use custom errors
+        require(msg.sender == address(i_kittyBridge), &quot;KittyConnect__NotKittyBridge&quot;);
+        _;
+    }
+</div></code></pre>
+</details>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Recommendation:</strong></p>
+<ul>
+<li>Implement <code>custom errors</code> instead of <code>require</code> statments</li>
+</ul>
+</li>
+</ul>
+<h2 id="informational-observations">Informational Observations</h2>
+<h3 id="the-kittyconnectsoltokensredeemedforvetvisit-event-is-not-being-used">The <code>KittyConnect.sol::TokensRedeemedForVetVisit</code> event is not being used.</h3>
+<ul>
+<li><strong>Description:</strong>
+<ul>
+<li>The <code>KittyConnect.sol::TokensRedeemedForVetVisit</code> event is not being used, consider removing it.</li>
+</ul>
+</li>
+<li><strong>Recommendation:</strong>
+<ul>
+<li>Follow the best practices and remove the deadcode.</li>
+</ul>
+</li>
+</ul>
+
+</body>
+</html>
